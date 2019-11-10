@@ -34,7 +34,6 @@ class Price extends React.Component<PriceProps> {
           ...info,
           ...values,
         });
-        form.resetFields();
       }
     });
   };

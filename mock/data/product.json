@@ -287,53 +287,5 @@
     "salesDiscontinuationDate": "2019-11-08",
     "method": "put",
     "lastUpdatedStamp": "2019-10-30 14:30:33"
-  },
-  "100": {
-    "productName": "test",
-    "productTypeId": "SERVICE",
-    "releaseDate": "2019-11-10",
-    "salesDiscontinuationDate": "2019-11-10",
-    "statusId": "enable",
-    "productCategotyId": "Business",
-    "geoIds": [
-      "Dong_Cheng_District",
-      "XiChengDistrict",
-      "ChaoYangDistrict"
-    ],
-    "fixFeatures": [
-      {
-        "featureTypeId": "CORP_REG_TYPE",
-        "featureIds": [
-          "1001",
-          "1002",
-          "1003"
-        ],
-        "isExclusive": "0"
-      }
-    ],
-    "mustFeatures": [
-      {
-        "featureTypeId": "CROP_ORG_TYPE",
-        "featureIds": [
-          "1201",
-          "1202",
-          "1203",
-          "1204"
-        ],
-        "isExclusive": "0"
-      }
-    ],
-    "optionFeatures": [
-      {
-        "featureTypeId": "GOV_WINDOW",
-        "featureIds": [
-          "1301",
-          "1302",
-          "1303"
-        ],
-        "isExclusive": "0"
-      }
-    ],
-    "productId": "100"
   }
 }

@@ -93,7 +93,6 @@ class Create extends React.Component<CreateProps, CreateState> {
           releaseDate: values.releaseDate.format('YYYY-MM-DD'),
           salesDiscontinuationDate: values.salesDiscontinuationDate.format('YYYY-MM-DD'),
         });
-        form.resetFields();
       }
     });
   };
