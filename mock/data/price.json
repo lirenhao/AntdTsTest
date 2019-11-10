@@ -1,0 +1,272 @@
+{
+  "1": {
+    "productId": "1",
+    "statusId": "enable",
+    "productPrice": 0,
+    "geoPrices": [{
+        "geoId": "Dong_Cheng_District",
+        "geoPrice": 100,
+        "featurePrices": [{
+            "featureId": "1001",
+            "featurePrice": 10
+          },
+          {
+            "featureId": "1002",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1003",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1302",
+            "featurePrice": 10
+          },
+          {
+            "featureId": "1303",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1301",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1203",
+            "featurePrice": 10
+          },
+          {
+            "featureId": "1206",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1402",
+            "featurePrice": 10
+          },
+          {
+            "featureId": "1401",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1102",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1201",
+            "featurePrice": 0
+          }
+        ]
+      },
+      {
+        "geoId": "Fangshan_District",
+        "geoPrice": 100,
+        "featurePrices": [{
+            "featureId": "1001",
+            "featurePrice": 10
+          },
+          {
+            "featureId": "1002",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1003",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1302",
+            "featurePrice": 10
+          },
+          {
+            "featureId": "1303",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1301",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1203",
+            "featurePrice": 10
+          },
+          {
+            "featureId": "1206",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1402",
+            "featurePrice": 10
+          },
+          {
+            "featureId": "1401",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1102",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1201",
+            "featurePrice": 0
+          }
+        ]
+      },
+      {
+        "geoId": "Fengtai_District",
+        "geoPrice": 0,
+        "featurePrices": [{
+            "featureId": "1001",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1002",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1003",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1302",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1303",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1301",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1203",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1206",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1402",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1401",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1102",
+            "featurePrice": 0
+          },
+          {
+            "featureId": "1201",
+            "featurePrice": 0
+          }
+        ]
+      }
+    ]
+  },
+  "2": {
+    "productId": "2",
+    "statusId": "enable",
+    "productPrice": 100,
+    "geoPrices": [{
+        "geoId": "Dong_Cheng_District",
+        "geoPrice": 100,
+        "featurePrices": [{
+            "featureId": "1001",
+            "featurePrice": 10
+          },
+          {
+            "featureId": "1003",
+            "featurePrice": 20
+          },
+          {
+            "featureId": "1302",
+            "featurePrice": 30
+          },
+          {
+            "featureId": "1303",
+            "featurePrice": 40
+          },
+          {
+            "featureId": "1301",
+            "featurePrice": 50
+          },
+          {
+            "featureId": "1102",
+            "featurePrice": 60
+          },
+          {
+            "featureId": "1201",
+            "featurePrice": 70
+          }
+        ]
+      },
+      {
+        "geoId": "Fangshan_District",
+        "geoPrice": 100,
+        "featurePrices": [{
+            "featureId": "1001",
+            "featurePrice": 10
+          },
+          {
+            "featureId": "1003",
+            "featurePrice": 20
+          },
+          {
+            "featureId": "1302",
+            "featurePrice": 30
+          },
+          {
+            "featureId": "1303",
+            "featurePrice": 40
+          },
+          {
+            "featureId": "1301",
+            "featurePrice": 50
+          },
+          {
+            "featureId": "1102",
+            "featurePrice": 60
+          },
+          {
+            "featureId": "1201",
+            "featurePrice": 70
+          }
+        ]
+      },
+      {
+        "geoId": "Fengtai_District",
+        "geoPrice": 100,
+        "featurePrices": [{
+            "featureId": "1001",
+            "featurePrice": 10
+          },
+          {
+            "featureId": "1003",
+            "featurePrice": 20
+          },
+          {
+            "featureId": "1302",
+            "featurePrice": 30
+          },
+          {
+            "featureId": "1303",
+            "featurePrice": 40
+          },
+          {
+            "featureId": "1301",
+            "featurePrice": 50
+          },
+          {
+            "featureId": "1102",
+            "featurePrice": 60
+          },
+          {
+            "featureId": "1201",
+            "featurePrice": 70
+          }
+        ]
+      }
+    ]
+  }
+}

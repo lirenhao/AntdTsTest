@@ -1,0 +1,158 @@
+{
+  "order1": {
+    "orderId": "order1",
+    "instalmentTypeEnumId": "0",
+    "renewalFeeStatusId": "0",
+    "legalPartyGroupName": "公司法人",
+    "corpName": "公司名称",
+    "agreementTypeId": "合同类型",
+    "agreementCode": "合同编号",
+    "products": [
+      {
+        "productId": "1",
+        "productName": "公司新设立",
+        "productPrice": 0,
+        "geoId": "Dong_Cheng_District",
+        "geoName": "东城区",
+        "geoPrice": "100",
+        "discountPrice": "10",
+        "features": [
+          {
+            "featureId": "1002",
+            "featurePrice": "0",
+            "featureName": "外资"
+          },
+          {
+            "featureId": "1303",
+            "featurePrice": 0,
+            "featureName": "商委"
+          },
+          {
+            "featureId": "1206",
+            "featurePrice": 0,
+            "featureName": "代表处"
+          }
+        ]
+      },
+      {
+        "productId": "2",
+        "productName": "公司变更",
+        "productPrice": "100",
+        "geoId": "Dong_Cheng_District",
+        "geoName": "东城区",
+        "geoPrice": "100",
+        "discountPrice": "10",
+        "features": [
+          {
+            "featureId": "1001",
+            "featurePrice": "10",
+            "featureName": "内资"
+          },
+          {
+            "featureId": "1302",
+            "featurePrice": "30",
+            "featureName": "税务"
+          },
+          {
+            "featureId": "1102",
+            "featurePrice": "60",
+            "featureName": "一般纳税人"
+          },
+          {
+            "featureId": "1201",
+            "featurePrice": "70",
+            "featureName": "有限公司"
+          }
+        ]
+      }
+    ],
+    "orderDate": "2019-11-07",
+    "serviceCommission": "100",
+    "grandTotal": 550
+  },
+  "order2": {
+    "orderId": "order2",
+    "instalmentTypeEnumId": "0",
+    "renewalFeeStatusId": "0",
+    "legalPartyGroupName": "公司法人",
+    "corpName": "公司法人",
+    "agreementTypeId": "公司法人",
+    "agreementCode": "公司法人",
+    "products": [
+      {
+        "productId": "1",
+        "productName": "公司新设立",
+        "productPrice": 0,
+        "geoId": "Dong_Cheng_District",
+        "geoName": "东城区",
+        "geoPrice": "100",
+        "discountPrice": "10",
+        "features": [
+          {
+            "featureId": "1001",
+            "featurePrice": "10",
+            "featureName": "内资"
+          },
+          {
+            "featureId": "1302",
+            "featurePrice": "10",
+            "featureName": "税务"
+          },
+          {
+            "featureId": "1203",
+            "featurePrice": "10",
+            "featureName": "合伙公司"
+          },
+          {
+            "featureId": "1402",
+            "featurePrice": "10",
+            "featureName": "3-5天"
+          }
+        ]
+      }
+    ],
+    "orderDate": "2019-11-07",
+    "serviceCommission": "100",
+    "grandTotal": 230
+  },
+  "order3": {
+    "orderId": "order3",
+    "instalmentTypeEnumId": "0",
+    "renewalFeeStatusId": "0",
+    "legalPartyGroupName": "test",
+    "corpName": "test",
+    "agreementTypeId": "test",
+    "agreementCode": "test",
+    "products": [
+      {
+        "productId": "1",
+        "productName": "公司新设立",
+        "productPrice": 0,
+        "geoId": "Dong_Cheng_District",
+        "geoName": "东城区",
+        "geoPrice": "100",
+        "discountPrice": "10",
+        "features": [
+          {
+            "featureId": "1002",
+            "featurePrice": "0",
+            "featureName": "外资"
+          },
+          {
+            "featureId": "1303",
+            "featurePrice": 0,
+            "featureName": "商委"
+          },
+          {
+            "featureId": "1206",
+            "featurePrice": 0,
+            "featureName": "代表处"
+          }
+        ]
+      }
+    ],
+    "orderDate": "2019-11-07",
+    "serviceCommission": "100",
+    "grandTotal": 190
+  }
+}

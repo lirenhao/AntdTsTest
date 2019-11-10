@@ -1,0 +1,1000 @@
+{
+  "productType": [
+    {
+      "productTypeId": "SERVICE",
+      "parentTypeId": "",
+      "isPhysical": "0",
+      "isDigital": "0",
+      "hasTable": "0",
+      "productTypeName": "服务产品类型",
+      "descript": "服务产品类型",
+      "lastUpdatedStamp": "2019-03-17 11:39:38",
+      "createdStamp": "2019-03-17 10:39:38",
+      "version": "v1.0.0"
+    },
+    {
+      "productTypeId": "SERVICE_PKG",
+      "parentTypeId": "",
+      "isPhysical": "0",
+      "isDigital": "0",
+      "hasTable": "0",
+      "productTypeName": "服务产品套餐类型",
+      "descript": "服务产品套餐类型",
+      "lastUpdatedStamp": "2019-03-17 11:39:38",
+      "createdStamp": "2019-03-17 10:39:38",
+      "version": "v1.0.0"
+    }
+  ],
+  "productCategoty": [
+    {
+      "productCategoryId": "Business",
+      "productCategoryName": "工商"
+    },
+    {
+      "productCategoryId": "Business_setup",
+      "productCategoryName": "设立",
+      "parentCategoryId": "Business"
+    },
+    {
+      "productCategoryId": "Business_cancel",
+      "productCategoryName": "注销",
+      "parentCategoryId": "Business"
+    },
+    {
+      "productCategoryId": "Business_change",
+      "productCategoryName": "变更",
+      "parentCategoryId": "Business"
+    },
+    {
+      "productCategoryId": "Fiscal_tax",
+      "productCategoryName": "财税"
+    },
+    {
+      "productCategoryId": "Fiscal_tax_sjjz",
+      "productCategoryName": "审计鉴证",
+      "parentCategoryId": "Fiscal_tax"
+    },
+    {
+      "productCategoryId": "Fiscal_tax_cwswdl",
+      "productCategoryName": "财务税务代理",
+      "parentCategoryId": "Fiscal_tax"
+    },
+    {
+      "productCategoryId": "Fixed_package",
+      "productCategoryName": "固定套餐"
+    },
+    {
+      "productCategoryId": "CSZHGLFW_TC",
+      "productCategoryName": "财税综合管理服务套餐",
+      "parentCategoryId": "Fixed_package"
+    },
+    {
+      "productCategoryId": "Qual",
+      "productCategoryName": "资质"
+    },
+    {
+      "productCategoryId": "legal",
+      "productCategoryName": "法律"
+    },
+    {
+      "productCategoryId": "address",
+      "productCategoryName": "地址"
+    },
+    {
+      "productCategoryId": "per_outs",
+      "productCategoryName": "人事外包"
+    }
+  ],
+  "geo": [
+    {
+      "geoId": "Dong_Cheng_District",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110101",
+      "geoName": "东城区"
+    },
+    {
+      "geoId": "XiChengDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110102",
+      "geoName": "西城区"
+    },
+    {
+      "geoId": "ChaoYangDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110105",
+      "geoName": "朝阳区"
+    },
+    {
+      "geoId": "Fengtai_District",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110106",
+      "geoName": "丰台区"
+    },
+    {
+      "geoId": "ShijingshanDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110107",
+      "geoName": "石景山区"
+    },
+    {
+      "geoId": "HaidianDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110108",
+      "geoName": "海淀区"
+    },
+    {
+      "geoId": "MentougouDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110109",
+      "geoName": "门头沟区"
+    },
+    {
+      "geoId": "Fangshan_District",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110111",
+      "geoName": "房山区"
+    },
+    {
+      "geoId": "Tongzhou_District",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110112",
+      "geoName": "通州区"
+    },
+    {
+      "geoId": "ShunyiDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110113",
+      "geoName": "顺义区"
+    },
+    {
+      "geoId": "ChangpingDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110114",
+      "geoName": "昌平区"
+    },
+    {
+      "geoId": "DaXingDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110115",
+      "geoName": "大兴区"
+    },
+    {
+      "geoId": "HuairouDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110116",
+      "geoName": "怀柔区"
+    },
+    {
+      "geoId": "PingguDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110117",
+      "geoName": "平谷区"
+    },
+    {
+      "geoId": "MiyunDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110118",
+      "geoName": "密云区"
+    },
+    {
+      "geoId": "YanqingDistrict",
+      "geoTypeId": "3_administrative_distric",
+      "ADMINISTRATIVE_DIVISION_CODE": "110119",
+      "geoName": "延庆区"
+    }
+  ],
+  "productFeatureType": [
+    {
+      "productFeatureTypeId": "CORP_REG_TYPE",
+      "productFeatureTypeName": "企业注册类型",
+      "isExclusive": "1",
+      "idCode": "10"
+    },
+    {
+      "productFeatureTypeId": "CORP_TAXPAYER_TYPE",
+      "productFeatureTypeName": "企业纳税人类型",
+      "isExclusive": "1",
+      "idCode": "11"
+    },
+    {
+      "productFeatureTypeId": "CROP_ORG_TYPE",
+      "productFeatureTypeName": "企业组织类型",
+      "isExclusive": "1",
+      "idCode": "12"
+    },
+    {
+      "productFeatureTypeId": "GOV_WINDOW",
+      "productFeatureTypeName": "政府窗口",
+      "isExclusive": "0",
+      "idCode": "13"
+    },
+    {
+      "productFeatureTypeId": "FWJJ",
+      "productFeatureTypeName": "服务加急类型",
+      "isExclusive": "1",
+      "idCode": "14"
+    },
+    {
+      "productFeatureTypeId": "GQZRCS",
+      "productFeatureTypeName": "股权转让次数(备注)",
+      "isExclusive": "1",
+      "idCode": "15"
+    },
+    {
+      "productFeatureTypeId": "QYBGNRSL",
+      "productFeatureTypeName": "企业变更内容数量水平(备注)",
+      "isExclusive": "1",
+      "idCode": "16"
+    },
+    {
+      "productFeatureTypeId": "ZRRGDSL",
+      "productFeatureTypeName": "自然人股东数量(备注)",
+      "isExclusive": "1",
+      "idCode": "17"
+    },
+    {
+      "productFeatureTypeId": "SPLX",
+      "productFeatureTypeName": "前后置审批类型(备注)",
+      "isExclusive": "1",
+      "idCode": "18"
+    },
+    {
+      "productFeatureTypeId": "XGLDLJZSL",
+      "productFeatureTypeName": "小规模代理记账数量(备注)",
+      "isExclusive": "1",
+      "idCode": "19"
+    },
+    {
+      "productFeatureTypeId": "YBNSRDLJZSL",
+      "productFeatureTypeName": "一般纳税人代理记账数量(备注)",
+      "isExclusive": "1",
+      "idCode": "20"
+    },
+    {
+      "productFeatureTypeId": "GQZRWSZM",
+      "productFeatureTypeName": "股权转让完税证明(备注)",
+      "isExclusive": "1",
+      "idCode": "21"
+    },
+    {
+      "productFeatureTypeId": "FLZXSL",
+      "productFeatureTypeName": "法律咨询数量",
+      "isExclusive": "1",
+      "idCode": "22"
+    },
+    {
+      "productFeatureTypeId": "SHTSL",
+      "productFeatureTypeName": "审合同数量",
+      "isExclusive": "1",
+      "idCode": "23"
+    },
+    {
+      "productFeatureTypeId": "ZCDZ",
+      "productFeatureTypeName": "注册地址类型",
+      "isExclusive": "1",
+      "idCode": "30"
+    },
+    {
+      "productFeatureTypeId": "QYSLLX",
+      "productFeatureTypeName": "企业设立类型",
+      "isExclusive": "1",
+      "idCode": "40"
+    },
+    {
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureTypeName": "企业变更类型",
+      "isExclusive": "0",
+      "idCode": "41"
+    },
+    {
+      "productFeatureTypeId": "QYZXLX",
+      "productFeatureTypeName": "企业注销类型",
+      "isExclusive": "1",
+      "idCode": "42"
+    },
+    {
+      "productFeatureTypeId": "SPJYXKZ_SPXSJYZ_LX",
+      "productFeatureTypeName": "食品经营许可证类型(食品销售经营者)",
+      "isExclusive": "1",
+      "idCode": "43"
+    },
+    {
+      "productFeatureTypeId": "SPJYXKZ_CYFW_LX",
+      "productFeatureTypeName": "食品经营许可类型(餐饮服务)",
+      "isExclusive": "1",
+      "idCode": "44"
+    },
+    {
+      "productFeatureTypeId": "WLYXLX",
+      "productFeatureTypeName": "网络游戏类型",
+      "isExclusive": "1",
+      "idCode": "45"
+    },
+    {
+      "productFeatureTypeId": "DXZZLX",
+      "productFeatureTypeName": "电信增值类型",
+      "isExclusive": "1",
+      "idCode": "46"
+    },
+    {
+      "productFeatureTypeId": "YLQXJYXKZLX",
+      "productFeatureTypeName": "医疗器械经营许可证类型",
+      "isExclusive": "1",
+      "idCode": "47"
+    },
+    {
+      "productFeatureTypeId": "SHANGBIAO",
+      "productFeatureTypeName": "商标",
+      "isExclusive": "1",
+      "idCode": "50"
+    },
+    {
+      "productFeatureTypeId": "ZHUANLI",
+      "productFeatureTypeName": "专利",
+      "isExclusive": "1",
+      "idCode": "51"
+    },
+    {
+      "productFeatureTypeId": "ZHUZUOQUAN",
+      "productFeatureTypeName": "著作权",
+      "isExclusive": "1",
+      "idCode": "52"
+    },
+    {
+      "productFeatureTypeId": "shuiwubaodao",
+      "productFeatureTypeName": "税务报道",
+      "isExclusive": "1",
+      "idCode": "60"
+    },
+    {
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureTypeName": "代理记账",
+      "isExclusive": "1",
+      "idCode": "61"
+    },
+    {
+      "productFeatureTypeId": "CSZHQT",
+      "productFeatureTypeName": "财税综合其它",
+      "isExclusive": "1",
+      "idCode": "62"
+    },
+    {
+      "productFeatureTypeId": "SWQT",
+      "productFeatureTypeName": "税务其它",
+      "isExclusive": "1",
+      "idCode": "63"
+    },
+    {
+      "productFeatureTypeId": "SWCH",
+      "productFeatureTypeName": "税务筹划",
+      "isExclusive": "1",
+      "idCode": "67"
+    },
+    {
+      "productFeatureTypeId": "GRSDNDHSQJ",
+      "productFeatureTypeName": "个人所得税年度汇算清缴",
+      "isExclusive": "1",
+      "idCode": "68"
+    },
+    {
+      "productFeatureTypeId": "QYRSSB",
+      "productFeatureTypeName": "人事社保",
+      "isExclusive": "1",
+      "idCode": "70"
+    },
+    {
+      "productFeatureTypeId": "FUWUNIANXIAN",
+      "productFeatureTypeName": "服务年限",
+      "isExclusive": "1",
+      "idCode": "80"
+    },
+    {
+      "productFeatureTypeId": "FWFLX",
+      "productFeatureTypeName": "服务费类型",
+      "isExclusive": "1",
+      "idCode": "81"
+    }
+  ],
+  "productFeature": [
+    {
+      "productFeatureId": "1001",
+      "productFeatureTypeId": "CORP_REG_TYPE",
+      "productFeatureName": "内资"
+    },
+    {
+      "productFeatureId": "1002",
+      "productFeatureTypeId": "CORP_REG_TYPE",
+      "productFeatureName": "外资"
+    },
+    {
+      "productFeatureId": "1003",
+      "productFeatureTypeId": "CORP_REG_TYPE",
+      "productFeatureName": "中外合资"
+    },
+    {
+      "productFeatureId": "1101",
+      "productFeatureTypeId": "CORP_TAXPAYER_TYPE",
+      "productFeatureName": "小规模纳税人"
+    },
+    {
+      "productFeatureId": "1102",
+      "productFeatureTypeId": "CORP_TAXPAYER_TYPE",
+      "productFeatureName": "一般纳税人"
+    },
+    {
+      "productFeatureId": "1201",
+      "productFeatureTypeId": "CROP_ORG_TYPE",
+      "productFeatureName": "有限公司"
+    },
+    {
+      "productFeatureId": "1202",
+      "productFeatureTypeId": "CROP_ORG_TYPE",
+      "productFeatureName": "股份公司"
+    },
+    {
+      "productFeatureId": "1203",
+      "productFeatureTypeId": "CROP_ORG_TYPE",
+      "productFeatureName": "合伙公司"
+    },
+    {
+      "productFeatureId": "1204",
+      "productFeatureTypeId": "CROP_ORG_TYPE",
+      "productFeatureName": "个人独资"
+    },
+    {
+      "productFeatureId": "1205",
+      "productFeatureTypeId": "CROP_ORG_TYPE",
+      "productFeatureName": "集团公司"
+    },
+    {
+      "productFeatureId": "1206",
+      "productFeatureTypeId": "CROP_ORG_TYPE",
+      "productFeatureName": "代表处"
+    },
+    {
+      "productFeatureId": "1301",
+      "productFeatureTypeId": "GOV_WINDOW",
+      "productFeatureName": "工商"
+    },
+    {
+      "productFeatureId": "1302",
+      "productFeatureTypeId": "GOV_WINDOW",
+      "productFeatureName": "税务"
+    },
+    {
+      "productFeatureId": "1303",
+      "productFeatureTypeId": "GOV_WINDOW",
+      "productFeatureName": "商委"
+    },
+    {
+      "productFeatureId": "1401",
+      "productFeatureTypeId": "FWJJ",
+      "productFeatureName": "1-3天"
+    },
+    {
+      "productFeatureId": "1402",
+      "productFeatureTypeId": "FWJJ",
+      "productFeatureName": "3-5天"
+    },
+    {
+      "productFeatureId": "1501",
+      "productFeatureTypeId": "GQZRCS",
+      "productFeatureName": "股权转让一次"
+    },
+    {
+      "productFeatureId": "1502",
+      "productFeatureTypeId": "GQZRCS",
+      "productFeatureName": "股权转让二次"
+    },
+    {
+      "productFeatureId": "1503",
+      "productFeatureTypeId": "GQZRCS",
+      "productFeatureName": "股权转让二次以上"
+    },
+    {
+      "productFeatureId": "1701",
+      "productFeatureTypeId": "ZRRGDSL",
+      "productFeatureName": "1-4人股东数量"
+    },
+    {
+      "productFeatureId": "1702",
+      "productFeatureTypeId": "ZRRGDSL",
+      "productFeatureName": "4-8人股东数量"
+    },
+    {
+      "productFeatureId": "1703",
+      "productFeatureTypeId": "ZRRGDSL",
+      "productFeatureName": "8人以上"
+    },
+    {
+      "productFeatureId": "1801",
+      "productFeatureTypeId": "SPLX",
+      "productFeatureName": "前置审批"
+    },
+    {
+      "productFeatureId": "1802",
+      "productFeatureTypeId": "SPLX",
+      "productFeatureName": "后置审批"
+    },
+    {
+      "productFeatureId": "1901",
+      "productFeatureTypeId": "XGLDLJZSL",
+      "productFeatureName": "20张/月票据以下"
+    },
+    {
+      "productFeatureId": "1902",
+      "productFeatureTypeId": "XGLDLJZSL",
+      "productFeatureName": "20-100张/月票据"
+    },
+    {
+      "productFeatureId": "1903",
+      "productFeatureTypeId": "XGLDLJZSL",
+      "productFeatureName": "100-200张/月票据"
+    },
+    {
+      "productFeatureId": "1904",
+      "productFeatureTypeId": "XGLDLJZSL",
+      "productFeatureName": "200张/月票据以上"
+    },
+    {
+      "productFeatureId": "2001",
+      "productFeatureTypeId": "YBNSRDLJZSL",
+      "productFeatureName": "50张/月票据以下"
+    },
+    {
+      "productFeatureId": "2002",
+      "productFeatureTypeId": "YBNSRDLJZSL",
+      "productFeatureName": "50-200张/月票据"
+    },
+    {
+      "productFeatureId": "2003",
+      "productFeatureTypeId": "YBNSRDLJZSL",
+      "productFeatureName": "200张/月票据以上"
+    },
+    {
+      "productFeatureId": "2201",
+      "productFeatureTypeId": "FLZXSL",
+      "productFeatureName": "<5次/年"
+    },
+    {
+      "productFeatureId": "2202",
+      "productFeatureTypeId": "FLZXSL",
+      "productFeatureName": "<15次/年"
+    },
+    {
+      "productFeatureId": "2301",
+      "productFeatureTypeId": "SHTSL",
+      "productFeatureName": "<5次/年"
+    },
+    {
+      "productFeatureId": "2302",
+      "productFeatureTypeId": "SHTSL",
+      "productFeatureName": "<15次/年"
+    },
+    {
+      "productFeatureId": "3001",
+      "productFeatureTypeId": "ZCDZ",
+      "productFeatureName": "客户自有地址"
+    },
+    {
+      "productFeatureId": "3002",
+      "productFeatureTypeId": "ZCDZ",
+      "productFeatureName": "渠道地址"
+    },
+    {
+      "productFeatureId": "3003",
+      "productFeatureTypeId": "ZCDZ",
+      "productFeatureName": "绿地地址"
+    },
+    {
+      "productFeatureId": "4001",
+      "productFeatureTypeId": "QYSLLX",
+      "productFeatureName": "企业设立"
+    },
+    {
+      "productFeatureId": "4101",
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureName": "名称变更"
+    },
+    {
+      "productFeatureId": "4102",
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureName": "地址变更"
+    },
+    {
+      "productFeatureId": "4103",
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureName": "法人变更"
+    },
+    {
+      "productFeatureId": "4104",
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureName": "经营范围变更"
+    },
+    {
+      "productFeatureId": "4105",
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureName": "经营期限变更"
+    },
+    {
+      "productFeatureId": "4106",
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureName": "注册资本变更"
+    },
+    {
+      "productFeatureId": "4107",
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureName": "高管变更"
+    },
+    {
+      "productFeatureId": "4108",
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureName": "股权变更#股东变更"
+    },
+    {
+      "productFeatureId": "4110",
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureName": "个体转有限"
+    },
+    {
+      "productFeatureId": "4111",
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureName": "工商解年报异常"
+    },
+    {
+      "productFeatureId": "4112",
+      "productFeatureTypeId": "QYBGLX",
+      "productFeatureName": "工商解地址异常"
+    },
+    {
+      "productFeatureId": "4201",
+      "productFeatureTypeId": "QYZXLX",
+      "productFeatureName": "工商注销"
+    },
+    {
+      "productFeatureId": "4202",
+      "productFeatureTypeId": "QYZXLX",
+      "productFeatureName": "税务注销"
+    },
+    {
+      "productFeatureId": "4203",
+      "productFeatureTypeId": "QYZXLX",
+      "productFeatureName": "社保注销"
+    },
+    {
+      "productFeatureId": "4204",
+      "productFeatureTypeId": "QYZXLX",
+      "productFeatureName": "公积金注销"
+    },
+    {
+      "productFeatureId": "4205",
+      "productFeatureTypeId": "QYZXLX",
+      "productFeatureName": "银行注销"
+    },
+    {
+      "productFeatureId": "4206",
+      "productFeatureTypeId": "QYZXLX",
+      "productFeatureName": "吊销1年以内"
+    },
+    {
+      "productFeatureId": "4207",
+      "productFeatureTypeId": "QYZXLX",
+      "productFeatureName": "吊销2年以内"
+    },
+    {
+      "productFeatureId": "4301",
+      "productFeatureTypeId": "SPJYXKZ_SPXSJYZ_LX",
+      "productFeatureName": "预包装食品（不含冷藏冷冻）"
+    },
+    {
+      "productFeatureId": "4302",
+      "productFeatureTypeId": "SPJYXKZ_SPXSJYZ_LX",
+      "productFeatureName": "预包装食品（含冷藏冷冻、保健品、散装食品)"
+    },
+    {
+      "productFeatureId": "4401",
+      "productFeatureTypeId": "SPJYXKZ_CYFW_LX",
+      "productFeatureName": "饮品店、外卖"
+    },
+    {
+      "productFeatureId": "4402",
+      "productFeatureTypeId": "SPJYXKZ_CYFW_LX",
+      "productFeatureName": "小型餐馆"
+    },
+    {
+      "productFeatureId": "4403",
+      "productFeatureTypeId": "SPJYXKZ_CYFW_LX",
+      "productFeatureName": "中型餐馆"
+    },
+    {
+      "productFeatureId": "4501",
+      "productFeatureTypeId": "WLYXLX",
+      "productFeatureName": "网络文化经营许可证(文网文)"
+    },
+    {
+      "productFeatureId": "4502",
+      "productFeatureTypeId": "WLYXLX",
+      "productFeatureName": "互联网出版许可证"
+    },
+    {
+      "productFeatureId": "4503",
+      "productFeatureTypeId": "WLYXLX",
+      "productFeatureName": "游戏运营备案"
+    },
+    {
+      "productFeatureId": "4504",
+      "productFeatureTypeId": "WLYXLX",
+      "productFeatureName": "虚拟货币发行与交易许可证"
+    },
+    {
+      "productFeatureId": "4601",
+      "productFeatureTypeId": "DXZZLX",
+      "productFeatureName": "互联网信息服务(ICP)许可证"
+    },
+    {
+      "productFeatureId": "4602",
+      "productFeatureTypeId": "DXZZLX",
+      "productFeatureName": "400电话申请"
+    },
+    {
+      "productFeatureId": "4603",
+      "productFeatureTypeId": "DXZZLX",
+      "productFeatureName": "SP接入业务"
+    },
+    {
+      "productFeatureId": "4604",
+      "productFeatureTypeId": "DXZZLX",
+      "productFeatureName": "全网移动网信息服务业务(SP)许可证"
+    },
+    {
+      "productFeatureId": "4701",
+      "productFeatureTypeId": "YLQXJYXKZLX",
+      "productFeatureName": "医疗器械II类经营许可证"
+    },
+    {
+      "productFeatureId": "4702",
+      "productFeatureTypeId": "YLQXJYXKZLX",
+      "productFeatureName": "医疗器械III类经营许可证"
+    },
+    {
+      "productFeatureId": "5001",
+      "productFeatureTypeId": "SHANGBIAO",
+      "productFeatureName": "商标注册"
+    },
+    {
+      "productFeatureId": "5002",
+      "productFeatureTypeId": "SHANGBIAO",
+      "productFeatureName": "商标补发"
+    },
+    {
+      "productFeatureId": "5003",
+      "productFeatureTypeId": "SHANGBIAO",
+      "productFeatureName": "商标续展"
+    },
+    {
+      "productFeatureId": "5004",
+      "productFeatureTypeId": "SHANGBIAO",
+      "productFeatureName": "商标评审"
+    },
+    {
+      "productFeatureId": "5005",
+      "productFeatureTypeId": "SHANGBIAO",
+      "productFeatureName": "商标复议"
+    },
+    {
+      "productFeatureId": "5006",
+      "productFeatureTypeId": "SHANGBIAO",
+      "productFeatureName": "商标撤申"
+    },
+    {
+      "productFeatureId": "5101",
+      "productFeatureTypeId": "ZHUANLI",
+      "productFeatureName": "发明专利"
+    },
+    {
+      "productFeatureId": "5102",
+      "productFeatureTypeId": "ZHUANLI",
+      "productFeatureName": "实用新型专利"
+    },
+    {
+      "productFeatureId": "5103",
+      "productFeatureTypeId": "ZHUANLI",
+      "productFeatureName": "外观设计专利"
+    },
+    {
+      "productFeatureId": "5104",
+      "productFeatureTypeId": "ZHUANLI",
+      "productFeatureName": "专利变更"
+    },
+    {
+      "productFeatureId": "5201",
+      "productFeatureTypeId": "ZHUZUOQUAN",
+      "productFeatureName": "软件著作权登记"
+    },
+    {
+      "productFeatureId": "5202",
+      "productFeatureTypeId": "ZHUZUOQUAN",
+      "productFeatureName": "软件著作权变更"
+    },
+    {
+      "productFeatureId": "5203",
+      "productFeatureTypeId": "ZHUZUOQUAN",
+      "productFeatureName": "软件著作权转让"
+    },
+    {
+      "productFeatureId": "6001",
+      "productFeatureTypeId": "shuiwubaodao",
+      "productFeatureName": "税务报道"
+    },
+    {
+      "productFeatureId": "6002",
+      "productFeatureTypeId": "shuiwubaodao",
+      "productFeatureName": "签订社保代扣代缴协议"
+    },
+    {
+      "productFeatureId": "6003",
+      "productFeatureTypeId": "shuiwubaodao",
+      "productFeatureName": "税务迁所"
+    },
+    {
+      "productFeatureId": "6101",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "建账"
+    },
+    {
+      "productFeatureId": "6102",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "整理原始票据"
+    },
+    {
+      "productFeatureId": "6103",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "财务处理"
+    },
+    {
+      "productFeatureId": "6104",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "出具资产负债表"
+    },
+    {
+      "productFeatureId": "6105",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "利润表"
+    },
+    {
+      "productFeatureId": "6106",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "增值税及附加税"
+    },
+    {
+      "productFeatureId": "6107",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "个人所得税"
+    },
+    {
+      "productFeatureId": "6108",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "企业所得税等相关税种的申报"
+    },
+    {
+      "productFeatureId": "6109",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "装订凭证"
+    },
+    {
+      "productFeatureId": "6110",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "总账"
+    },
+    {
+      "productFeatureId": "6111",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "明细账"
+    },
+    {
+      "productFeatureId": "6112",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "财税报表"
+    },
+    {
+      "productFeatureId": "6113",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "代缴税款"
+    },
+    {
+      "productFeatureId": "6114",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "年度汇算清缴"
+    },
+    {
+      "productFeatureId": "6115",
+      "productFeatureTypeId": "dailijizhang",
+      "productFeatureName": "工商年报"
+    },
+    {
+      "productFeatureId": "6201",
+      "productFeatureTypeId": "CSZHQT",
+      "productFeatureName": "财税知识培训"
+    },
+    {
+      "productFeatureId": "6202",
+      "productFeatureTypeId": "CSZHQT",
+      "productFeatureName": "税务风险防控"
+    },
+    {
+      "productFeatureId": "6301",
+      "productFeatureTypeId": "SWQT",
+      "productFeatureName": "税控申请"
+    },
+    {
+      "productFeatureId": "6302",
+      "productFeatureTypeId": "SWQT",
+      "productFeatureName": "税控托管"
+    },
+    {
+      "productFeatureId": "6303",
+      "productFeatureTypeId": "SWQT",
+      "productFeatureName": "发票增版"
+    },
+    {
+      "productFeatureId": "6304",
+      "productFeatureTypeId": "SWQT",
+      "productFeatureName": "发票增量"
+    },
+    {
+      "productFeatureId": "7001",
+      "productFeatureTypeId": "QYRSSB",
+      "productFeatureName": "社保开户"
+    },
+    {
+      "productFeatureId": "7002",
+      "productFeatureTypeId": "QYRSSB",
+      "productFeatureName": "社保增员"
+    },
+    {
+      "productFeatureId": "7003",
+      "productFeatureTypeId": "QYRSSB",
+      "productFeatureName": "社保减员"
+    },
+    {
+      "productFeatureId": "7004",
+      "productFeatureTypeId": "QYRSSB",
+      "productFeatureName": "社保变更"
+    },
+    {
+      "productFeatureId": "7005",
+      "productFeatureTypeId": "QYRSSB",
+      "productFeatureName": "公积金开户"
+    },
+    {
+      "productFeatureId": "7006",
+      "productFeatureTypeId": "QYRSSB",
+      "productFeatureName": "公积金增员"
+    },
+    {
+      "productFeatureId": "7007",
+      "productFeatureTypeId": "QYRSSB",
+      "productFeatureName": "公积金减员"
+    },
+    {
+      "productFeatureId": "8001",
+      "productFeatureTypeId": "FUWUNIANXIAN",
+      "productFeatureName": "绿地地址1年"
+    },
+    {
+      "productFeatureId": "8002",
+      "productFeatureTypeId": "FUWUNIANXIAN",
+      "productFeatureName": "绿地地址2年"
+    },
+    {
+      "productFeatureId": "8003",
+      "productFeatureTypeId": "FUWUNIANXIAN",
+      "productFeatureName": "绿地地址3年"
+    },
+    {
+      "productFeatureId": "8101",
+      "productFeatureTypeId": "FWFLX",
+      "productFeatureName": "服务费"
+    }
+  ]
+}

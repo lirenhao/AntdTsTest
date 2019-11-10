@@ -1,0 +1,339 @@
+{
+  "1": {
+    "id": "1",
+    "productName": "公司新设立",
+    "productTypeId": "SERVICE",
+    "statusId": "enable",
+    "productCategotyId": "Qual",
+    "geoIds": [
+      "Dong_Cheng_District",
+      "Fangshan_District",
+      "Fengtai_District"
+    ],
+    "fixFeatures": [
+      {
+        "featureTypeId": "CORP_REG_TYPE",
+        "featureIds": [
+          "1001",
+          "1002",
+          "1003"
+        ],
+        "isExclusive": "1"
+      },
+      {
+        "featureTypeId": "GOV_WINDOW",
+        "featureIds": [
+          "1302",
+          "1303",
+          "1301"
+        ],
+        "isExclusive": "0"
+      },
+      {
+        "featureTypeId": "CROP_ORG_TYPE",
+        "featureIds": [
+          "1203",
+          "1206"
+        ],
+        "isExclusive": "0"
+      },
+      {
+        "featureTypeId": "FWJJ",
+        "featureIds": [
+          "1402",
+          "1401"
+        ],
+        "isExclusive": "1"
+      }
+    ],
+    "mustFeatures": [
+      {
+        "featureTypeId": "CORP_TAXPAYER_TYPE",
+        "featureIds": [
+          "1102"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "optionFeatures": [
+      {
+        "featureTypeId": "CROP_ORG_TYPE",
+        "featureIds": [
+          "1201"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "productId": "1",
+    "releaseDate": "2019-10-28",
+    "salesDiscontinuationDate": "2019-10-31",
+    "method": "put",
+    "lastUpdatedStamp": "2019-10-30 14:29:40"
+  },
+  "2": {
+    "id": "2",
+    "productName": "公司变更",
+    "productTypeId": "SERVICE",
+    "statusId": "disable",
+    "productCategotyId": "Qual",
+    "geoIds": [
+      "Dong_Cheng_District",
+      "Fangshan_District",
+      "Fengtai_District"
+    ],
+    "fixFeatures": [
+      {
+        "featureTypeId": "CORP_REG_TYPE",
+        "featureIds": [
+          "1001",
+          "1003"
+        ],
+        "isExclusive": "0"
+      },
+      {
+        "featureTypeId": "GOV_WINDOW",
+        "featureIds": [
+          "1302",
+          "1303",
+          "1301"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "mustFeatures": [
+      {
+        "featureTypeId": "CORP_TAXPAYER_TYPE",
+        "featureIds": [
+          "1102"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "optionFeatures": [
+      {
+        "featureTypeId": "CROP_ORG_TYPE",
+        "featureIds": [
+          "1201"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "productId": "2",
+    "releaseDate": "2019-10-28",
+    "salesDiscontinuationDate": "2019-10-31",
+    "method": "put",
+    "lastUpdatedStamp": "2019-10-30 14:30:17"
+  },
+  "3": {
+    "id": "3",
+    "productName": "国地税报道",
+    "productTypeId": "SERVICE",
+    "statusId": "disable",
+    "productCategotyId": "Qual",
+    "geoIds": [
+      "Dong_Cheng_District",
+      "Fangshan_District",
+      "Fengtai_District"
+    ],
+    "fixFeatures": [
+      {
+        "featureTypeId": "CORP_REG_TYPE",
+        "featureIds": [
+          "1001",
+          "1003"
+        ],
+        "isExclusive": "0"
+      },
+      {
+        "featureTypeId": "GOV_WINDOW",
+        "featureIds": [
+          "1302",
+          "1303",
+          "1301"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "mustFeatures": [
+      {
+        "featureTypeId": "CORP_TAXPAYER_TYPE",
+        "featureIds": [
+          "1102"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "optionFeatures": [
+      {
+        "featureTypeId": "CROP_ORG_TYPE",
+        "featureIds": [
+          "1201"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "productId": "3",
+    "releaseDate": "2019-10-28",
+    "salesDiscontinuationDate": "2019-10-31",
+    "method": "put",
+    "lastUpdatedStamp": "2019-10-30 14:30:09"
+  },
+  "4": {
+    "id": "4",
+    "productName": "代理记账",
+    "productTypeId": "SERVICE",
+    "fromDate": "2019-10-28",
+    "thruDate": "2019-10-28",
+    "productCategotyId": "Qual",
+    "geoIds": [
+      "Dong_Cheng_District",
+      "Fangshan_District",
+      "Fengtai_District"
+    ],
+    "fixFeatures": [
+      {
+        "featureTypeId": "CORP_REG_TYPE",
+        "featureIds": [
+          "1001",
+          "1003"
+        ],
+        "isExclusive": "0"
+      },
+      {
+        "featureTypeId": "GOV_WINDOW",
+        "featureIds": [
+          "1302",
+          "1303",
+          "1301"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "mustFeatures": [
+      {
+        "featureTypeId": "CORP_TAXPAYER_TYPE",
+        "featureIds": [
+          "1102"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "optionFeatures": [
+      {
+        "featureTypeId": "CROP_ORG_TYPE",
+        "featureIds": [
+          "1201"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "productId": "4",
+    "releaseDate": "2019-10-28",
+    "salesDiscontinuationDate": "2019-11-08",
+    "statusId": "disable",
+    "method": "put",
+    "lastUpdatedStamp": "2019-10-30 14:30:25"
+  },
+  "5": {
+    "id": "5",
+    "productName": "产品测试",
+    "productTypeId": "SERVICE_PKG",
+    "statusId": "enable",
+    "productCategotyId": "Qual",
+    "geoIds": [
+      "Dong_Cheng_District",
+      "Fangshan_District",
+      "Fengtai_District"
+    ],
+    "fixFeatures": [
+      {
+        "featureTypeId": "CORP_REG_TYPE",
+        "featureIds": [
+          "1001",
+          "1003"
+        ],
+        "isExclusive": "0"
+      },
+      {
+        "featureTypeId": "GOV_WINDOW",
+        "featureIds": [
+          "1302",
+          "1303",
+          "1301"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "mustFeatures": [
+      {
+        "featureTypeId": "CORP_TAXPAYER_TYPE",
+        "featureIds": [
+          "1102"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "optionFeatures": [
+      {
+        "featureTypeId": "CROP_ORG_TYPE",
+        "featureIds": [
+          "1201"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "productId": "5",
+    "releaseDate": "2019-10-28",
+    "salesDiscontinuationDate": "2019-11-08",
+    "method": "put",
+    "lastUpdatedStamp": "2019-10-30 14:30:33"
+  },
+  "100": {
+    "productName": "test",
+    "productTypeId": "SERVICE",
+    "releaseDate": "2019-11-10",
+    "salesDiscontinuationDate": "2019-11-10",
+    "statusId": "enable",
+    "productCategotyId": "Business",
+    "geoIds": [
+      "Dong_Cheng_District",
+      "XiChengDistrict",
+      "ChaoYangDistrict"
+    ],
+    "fixFeatures": [
+      {
+        "featureTypeId": "CORP_REG_TYPE",
+        "featureIds": [
+          "1001",
+          "1002",
+          "1003"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "mustFeatures": [
+      {
+        "featureTypeId": "CROP_ORG_TYPE",
+        "featureIds": [
+          "1201",
+          "1202",
+          "1203",
+          "1204"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "optionFeatures": [
+      {
+        "featureTypeId": "GOV_WINDOW",
+        "featureIds": [
+          "1301",
+          "1302",
+          "1303"
+        ],
+        "isExclusive": "0"
+      }
+    ],
+    "productId": "100"
+  }
+}
