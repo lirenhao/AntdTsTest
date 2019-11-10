@@ -128,6 +128,12 @@ export default {
               component: './product',
             },
             {
+              name: 'order',
+              icon: 'smile',
+              path: '/order',
+              component: './order',
+            },
+            {
               component: './404',
             },
           ],
