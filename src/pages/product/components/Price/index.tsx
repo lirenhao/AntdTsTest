@@ -8,17 +8,14 @@ import { Product, ProductPrice } from '../../data';
 import Create from './Create';
 
 interface PriceProps extends FormComponentProps {
-  dispatch: Dispatch<any>;
-  loading: boolean;
+  dispatch?: Dispatch<any>;
+  loading?: boolean;
   title: string;
   visible: boolean;
-  hideModal: (e: any) => void;
-  product: Product;
-  info: ProductPrice;
-  handleFormSubmit: (e: any) => void;
-}
-
-interface PriceState {
+  hideModal(e: any): void;
+  product: Partial<Product>;
+  info: Partial<ProductPrice>;
+  handleFormSubmit(e: any): void;
 }
 
 @connect(({ loading }: {
@@ -26,7 +23,7 @@ interface PriceState {
 }) => ({
   loading: loading.effects['product/savePrice'],
 }))
-class Price extends React.Component<PriceProps, PriceState> {
+class Price extends React.Component<PriceProps> {
 
   handleSubmit = (e: any) => {
     const { handleFormSubmit, form, info } = this.props;

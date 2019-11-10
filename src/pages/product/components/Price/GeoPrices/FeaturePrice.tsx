@@ -5,7 +5,7 @@ import { DictStateType, ProductFeatureDict } from '@/models/dict'
 import { FeaturePrice } from '@/pages/product/data';
 
 interface PriceProps {
-  productFeature: ProductFeatureDict[];
+  productFeature?: ProductFeatureDict[];
   value: FeaturePrice;
   onChange: (value: FeaturePrice) => void;
 }
@@ -19,17 +19,22 @@ class Price extends React.Component<PriceProps, PriceState> {
 
   getFeatureName = (id: string) => {
     const { productFeature } = this.props;
-    const list = productFeature.filter(item => item.productFeatureId === id);
+    const list = (productFeature || [])
+      .filter(item => item.productFeatureId === id);
     return list.length > 0 ? list[0].productFeatureName : id;
   };
 
-  featurePriceChange = (e: any) => {
+  featurePriceChange = (e: {
+    target: {
+      value: string
+    }
+  }) => {
     const featurePrice = e.target.value;
     const pattern = /^(\d+)((?:\.\d{1,2})?)$/;
     if (pattern.test(featurePrice)) {
       const { value, onChange } = this.props;
       if (onChange) {
-        onChange({ ...value, featurePrice });
+        onChange({ ...value, featurePrice: parseFloat(featurePrice) });
       }
     }
   };

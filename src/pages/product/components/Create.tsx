@@ -10,16 +10,16 @@ import moment from 'moment';
 import Feature from './Feature';
 
 interface CreateProps extends FormComponentProps {
-  dispatch: Dispatch<any>;
-  productType: ProductTypeDict[];
-  productCategoty: ProductCategotyDict[];
-  geo: GeoDict[];
-  loading: boolean;
+  dispatch?: Dispatch<any>;
+  productType?: ProductTypeDict[];
+  productCategoty?: ProductCategotyDict[];
+  geo?: GeoDict[];
+  loading?: boolean;
   title: string;
-  info: Product;
+  info: Partial<Product>;
   visible: boolean;
-  hideModal: (e: any) => void;
-  handleFormSubmit: (e: any) => void;
+  hideModal(e: any): void;
+  handleFormSubmit(e: any): void;
 }
 
 interface CreateState {
@@ -140,7 +140,7 @@ class Create extends React.Component<CreateProps, CreateState> {
 
     const typeTree = objToTree(
       { productTypeId: '', productTypeName: '父级节点' },
-      productType.map(item => (item.parentTypeId ? item : { ...item, parentTypeId: '' })),
+      (productType || []).map(item => (item.parentTypeId ? item : { ...item, parentTypeId: '' })),
       'productTypeId',
       'parentTypeId',
       'productTypeName'
@@ -148,7 +148,7 @@ class Create extends React.Component<CreateProps, CreateState> {
 
     const categotyTree = objToTree(
       { productCategoryId: '', productCategoryName: '父级节点' },
-      productCategoty.map(item =>
+      (productCategoty || []).map(item =>
         item.parentCategoryId ? item : { ...item, parentCategoryId: '' }
       ),
       'productCategoryId',
@@ -273,7 +273,7 @@ class Create extends React.Component<CreateProps, CreateState> {
             })(
               <Checkbox.Group>
                 <Row>
-                  {geo.map(item => (
+                  {(geo || []).map(item => (
                     <Col span={8} key={item.geoId}>
                       <Checkbox value={item.geoId}>{item.geoName}</Checkbox>
                     </Col>

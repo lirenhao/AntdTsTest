@@ -6,10 +6,10 @@ import { GeoPrice, FeaturePrice, Product, ProductFeature } from '@/pages/product
 import FeaPrice from './FeaturePrice';
 
 interface PriceProps {
-  geo: GeoDict[];
-  productFeatureType: ProductFeatureTypeDict[];
-  productFeature: ProductFeatureDict[];
-  product: Product;
+  geo?: GeoDict[];
+  productFeatureType?: ProductFeatureTypeDict[];
+  productFeature?: ProductFeatureDict[];
+  product: Partial<Product>;
   value: GeoPrice;
   onChange: (geoPrice: GeoPrice) => void;
 }
@@ -25,30 +25,36 @@ class Price extends React.Component<PriceProps, PriceState> {
 
   getGeoName = (geoId: string) => {
     const { geo } = this.props;
-    const geos = geo.filter(item => item.geoId === geoId);
+    const geos = (geo || [])
+      .filter(item => item.geoId === geoId);
     return geos.length > 0 ? geos[0].geoName : geoId;
   };
 
   getFeatureTypeName = (typeId: string) => {
     const { productFeatureType } = this.props;
-    const types = productFeatureType.filter(item => item.productFeatureTypeId === typeId);
+    const types = (productFeatureType || [])
+      .filter(item => item.productFeatureTypeId === typeId);
     return types.length > 0 ? types[0].productFeatureTypeName : typeId;
   };
 
-  geoPriceChange = (e: any) => {
+  geoPriceChange = (e: {
+    target: {
+      value: string
+    }
+  }) => {
     const geoPrice = e.target.value;
     const pattern = /^(\d+)((?:\.\d{1,2})?)$/;
     if (pattern.test(geoPrice)) {
       const { value, onChange } = this.props;
       if (onChange) {
-        onChange({ ...value, geoPrice });
+        onChange({ ...value, geoPrice: parseFloat(geoPrice) });
       }
     }
   };
 
   featurePriceChange = (featurePrice: FeaturePrice) => {
     const { value, onChange } = this.props;
-    const featurePrices = value.featurePrices.map((fp: FeaturePrice) =>
+    const featurePrices = (value.featurePrices || []).map((fp: FeaturePrice) =>
       fp.featureId === featurePrice.featureId ? featurePrice : fp
     );
     if (onChange) {
@@ -100,7 +106,7 @@ class Price extends React.Component<PriceProps, PriceState> {
                   title={this.getFeatureTypeName(item.featureTypeId)}
                   description={item.featureIds.map(id => (
                     <FeaPrice
-                      value={value.featurePrices.filter(fp => fp.featureId === id)[0] || {}}
+                      value={(value.featurePrices || []).filter(fp => fp.featureId === id)[0] || {}}
                       onChange={this.featurePriceChange}
                     />
                   ))}

@@ -2,17 +2,19 @@ import React from 'react';
 import { connect } from 'dva';
 import { Modal, Form, Radio, Select, Checkbox, Row, Col } from 'antd';
 import { FormComponentProps } from 'antd/es/form';
-import { DictStateType, ProductFeatureTypeDict, ProductFeatureDict, GeoDict } from '@/models/dict'
+import { DictStateType, ProductFeatureTypeDict, ProductFeatureDict } from '@/models/dict'
 import { ProductFeature } from '../../data';
 
 interface CreateProps extends FormComponentProps {
-  productFeatureType: ProductFeatureTypeDict[];
-  productFeature: ProductFeatureDict[];
+  productFeatureType?: ProductFeatureTypeDict[];
+  productFeature?: ProductFeatureDict[];
   visible: boolean;
   title: string;
-  info: ProductFeature;
+  label: string;
   hideModal: () => void;
-  handleFormSubmit: (record: ProductFeature, info: ProductFeature) => void;
+  handleFormSubmit: (record: ProductFeature, info: Partial<ProductFeature>) => void;
+  info: Partial<ProductFeature>;
+  value: ProductFeature[];
   limit: {
     featureTypeIds: string[];
     featureIds: string[];
@@ -20,7 +22,7 @@ interface CreateProps extends FormComponentProps {
 }
 
 interface CreateState {
-  featureTypeId: string;
+  featureTypeId?: string;
 }
 
 @connect(({ dict }: {
@@ -70,7 +72,7 @@ class Create extends React.Component<CreateProps, CreateState> {
     const { featureTypeId } = this.state;
     const typeId = featureTypeId || info.featureTypeId;
     const ids = info.featureIds || [];
-    const feature = productFeature
+    const feature = (productFeature || [])
       .filter(item => item.productFeatureTypeId === typeId)
       .filter(
         item =>
@@ -98,13 +100,14 @@ class Create extends React.Component<CreateProps, CreateState> {
       info,
     } = this.props;
 
-    const featureType = productFeatureType.filter(
-      item =>
-        limit.featureTypeIds.indexOf(item.productFeatureTypeId) < 0 ||
-        item.productFeatureTypeId === info.featureTypeId ||
-        (item.productFeatureTypeId === 'QYBGLX' &&
-          value.map((v: ProductFeature) => v.featureTypeId).indexOf(item.productFeatureTypeId) < 0)
-    );
+    const featureType = (productFeatureType || [])
+      .filter(
+        item =>
+          limit.featureTypeIds.indexOf(item.productFeatureTypeId) < 0 ||
+          item.productFeatureTypeId === info.featureTypeId ||
+          (item.productFeatureTypeId === 'QYBGLX' &&
+            value.map((v: ProductFeature) => v.featureTypeId).indexOf(item.productFeatureTypeId) < 0)
+      );
 
     const formItemLayout = {
       labelCol: {

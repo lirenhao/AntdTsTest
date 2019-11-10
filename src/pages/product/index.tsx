@@ -24,8 +24,8 @@ interface ProductListState {
   isCreateShow: boolean;
   isUpdateShow: boolean;
   isPriceShow: boolean;
-  info: Product;
-  price: ProductPrice;
+  info: Partial<Product>;
+  price: Partial<ProductPrice>;
 }
 
 @connect(({ product, dict, loading }: {

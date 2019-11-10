@@ -5,13 +5,11 @@ import { Product, ProductPrice } from '../../data';
 import GeoPrices from './GeoPrices';
 
 interface CreateProps extends FormComponentProps {
-  product: Product;
-  info: ProductPrice;
+  product: Partial<Product>;
+  info: Partial<ProductPrice>;
 }
 
-interface CreateState { }
-
-class Create extends React.PureComponent<CreateProps, CreateState> {
+class Create extends React.PureComponent<CreateProps> {
   render() {
     const { form: { getFieldDecorator }, product, info } = this.props;
 

@@ -7,10 +7,10 @@ import { ProductFeature } from '../../data';
 import Create from './Create';
 
 interface FeatureProps {
-  productFeatureType: ProductFeatureTypeDict[];
-  productFeature: ProductFeatureDict[];
+  productFeatureType?: ProductFeatureTypeDict[];
+  productFeature?: ProductFeatureDict[];
   value: ProductFeature[];
-  onChange: (value: ProductFeature[]) => void;
+  onChange?: (value: ProductFeature[]) => void;
   title: string;
   label: string;
   limit: {
@@ -77,11 +77,11 @@ class Feature extends React.Component<FeatureProps, FeatureState> {
     this.handleUpdateModal(true);
   };
 
-  handleUpdateForm = (record: ProductFeature, info: ProductFeature) => {
+  handleUpdateForm = (record: ProductFeature, info: Partial<ProductFeature>) => {
     const { value, onChange, limit, setLimit } = this.props;
     const newValue = value
       .map((item: ProductFeature) => (info.featureTypeId === item.featureTypeId ? record : item));
-    onChange(newValue);
+    if (onChange) onChange(newValue);
     setLimit({
       featureTypeIds: [
         ...limit.featureTypeIds.filter((id: string) => id !== info.featureTypeId),
@@ -97,7 +97,7 @@ class Feature extends React.Component<FeatureProps, FeatureState> {
 
   handleRemove = (record: ProductFeature) => {
     const { value, onChange, limit, setLimit } = this.props;
-    onChange(value.filter((item: ProductFeature) => record.featureTypeId !== item.featureTypeId));
+    if (onChange) onChange(value.filter((item: ProductFeature) => record.featureTypeId !== item.featureTypeId));
     setLimit({
       featureTypeIds: [...limit.featureTypeIds.filter((id: string) => id !== record.featureTypeId)],
       featureIds: [...limit.featureIds.filter((id: string) => record.featureIds.indexOf(id) < 0)],
@@ -106,14 +106,14 @@ class Feature extends React.Component<FeatureProps, FeatureState> {
 
   getFeatureTypeName = (featureTypeId: string) => {
     const { productFeatureType } = this.props;
-    const data = productFeatureType
+    const data = (productFeatureType || [])
       .filter((item: ProductFeatureTypeDict) => item.productFeatureTypeId === featureTypeId);
     return data && data[0] ? data[0].productFeatureTypeName : featureTypeId;
   }
 
   getFeatureName = (featureId: string) => {
     const { productFeature } = this.props;
-    const data = productFeature
+    const data = (productFeature || [])
       .filter((item: ProductFeatureDict) => item.productFeatureId === featureId);
     return data && data[0] ? data[0].productFeatureName : featureId;
   }
