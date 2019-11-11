@@ -2,13 +2,11 @@
   "1": {
     "productId": "1",
     "statusId": "enable",
-    "productPrice": "100",
-    "geoPrices": [
-      {
+    "productPrice": 100,
+    "geoPrices": [{
         "geoId": "Dong_Cheng_District",
         "geoPrice": 100,
-        "featurePrices": [
-          {
+        "featurePrices": [{
             "featureId": "1001",
             "featurePrice": 10
           },
@@ -61,8 +59,7 @@
       {
         "geoId": "Fangshan_District",
         "geoPrice": 100,
-        "featurePrices": [
-          {
+        "featurePrices": [{
             "featureId": "1001",
             "featurePrice": 10
           },
@@ -115,8 +112,7 @@
       {
         "geoId": "Fengtai_District",
         "geoPrice": 0,
-        "featurePrices": [
-          {
+        "featurePrices": [{
             "featureId": "1001",
             "featurePrice": 0
           },
@@ -171,13 +167,11 @@
   "2": {
     "productId": "2",
     "statusId": "enable",
-    "productPrice": "10",
-    "geoPrices": [
-      {
+    "productPrice": 10,
+    "geoPrices": [{
         "geoId": "Dong_Cheng_District",
         "geoPrice": 100,
-        "featurePrices": [
-          {
+        "featurePrices": [{
             "featureId": "1001",
             "featurePrice": 10
           },
@@ -210,8 +204,7 @@
       {
         "geoId": "Fangshan_District",
         "geoPrice": 100,
-        "featurePrices": [
-          {
+        "featurePrices": [{
             "featureId": "1001",
             "featurePrice": 10
           },
@@ -244,8 +237,7 @@
       {
         "geoId": "Fengtai_District",
         "geoPrice": 100,
-        "featurePrices": [
-          {
+        "featurePrices": [{
             "featureId": "1001",
             "featurePrice": 10
           },

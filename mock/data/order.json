@@ -13,11 +13,11 @@
         "productPrice": 0,
         "geoId": "Dong_Cheng_District",
         "geoName": "东城区",
-        "geoPrice": "100",
-        "discountPrice": "10",
+        "geoPrice": 100,
+        "discountPrice": 10,
         "features": [{
             "featureId": "1002",
-            "featurePrice": "0",
+            "featurePrice": 0,
             "featureName": "外资"
           },
           {
@@ -35,29 +35,29 @@
       {
         "productId": "2",
         "productName": "公司变更",
-        "productPrice": "100",
+        "productPrice": 100,
         "geoId": "Dong_Cheng_District",
         "geoName": "东城区",
-        "geoPrice": "100",
-        "discountPrice": "10",
+        "geoPrice": 100,
+        "discountPrice": 10,
         "features": [{
             "featureId": "1001",
-            "featurePrice": "10",
+            "featurePrice": 10,
             "featureName": "内资"
           },
           {
             "featureId": "1302",
-            "featurePrice": "30",
+            "featurePrice": 30,
             "featureName": "税务"
           },
           {
             "featureId": "1102",
-            "featurePrice": "60",
+            "featurePrice": 60,
             "featureName": "一般纳税人"
           },
           {
             "featureId": "1201",
-            "featurePrice": "70",
+            "featurePrice": 70,
             "featureName": "有限公司"
           }
         ]
@@ -81,26 +81,26 @@
       "productPrice": 0,
       "geoId": "Dong_Cheng_District",
       "geoName": "东城区",
-      "geoPrice": "100",
-      "discountPrice": "10",
+      "geoPrice": 100,
+      "discountPrice": 10,
       "features": [{
           "featureId": "1001",
-          "featurePrice": "10",
+          "featurePrice": 10,
           "featureName": "内资"
         },
         {
           "featureId": "1302",
-          "featurePrice": "10",
+          "featurePrice": 10,
           "featureName": "税务"
         },
         {
           "featureId": "1203",
-          "featurePrice": "10",
+          "featurePrice": 10,
           "featureName": "合伙公司"
         },
         {
           "featureId": "1402",
-          "featurePrice": "10",
+          "featurePrice": 10,
           "featureName": "3-5天"
         }
       ]
@@ -123,11 +123,11 @@
       "productPrice": 0,
       "geoId": "Dong_Cheng_District",
       "geoName": "东城区",
-      "geoPrice": "100",
-      "discountPrice": "10",
+      "geoPrice": 100,
+      "discountPrice": 10,
       "features": [{
           "featureId": "1002",
-          "featurePrice": "0",
+          "featurePrice": 0,
           "featureName": "外资"
         },
         {

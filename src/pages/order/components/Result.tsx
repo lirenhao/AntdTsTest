@@ -44,6 +44,7 @@ class Result extends React.PureComponent<ResultProps> {
         return (record.productPrice + record.geoPrice + featurePrice - record.discountPrice);
       })
       .reduce((a, b) => (a + b), 0);
+    console.log(productPrice)
     return (info.serviceCommission || 0) + productPrice;
   };
 
