@@ -89,7 +89,7 @@ class Update extends React.Component<UpdateProps> {
           geoId: info.geoId,
           geoName: this.getGeoName(info.geoId || ''),
           geoPrice: info.geoPrice,
-          discountPrice: values.discountPrice,
+          discountPrice: parseFloat(values.discountPrice),
           features: featurePrices
             .filter(item => featureIds.indexOf(item.featureId) > -1)
             .map(item => ({

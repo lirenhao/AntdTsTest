@@ -14,12 +14,13 @@ class BasicInfo extends React.Component<BasicInfoProps> {
   handleSubmit = (e: any) => {
     const { handleNext, form, info } = this.props;
     e.preventDefault();
-    form.validateFieldsAndScroll((err, values) => {
+    form.validateFieldsAndScroll((err, value) => {
       if (!err) {
         handleNext({
           ...info,
-          ...values,
-          orderDate: values.orderDate.format('YYYY-MM-DD'),
+          ...value,
+          serviceCommission: parseFloat(value.serviceCommission),
+          orderDate: value.orderDate.format('YYYY-MM-DD'),
         });
       }
     });

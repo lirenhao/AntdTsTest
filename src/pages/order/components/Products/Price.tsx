@@ -98,7 +98,7 @@ class Price extends React.PureComponent<PriceProps> {
           geoId: details.geoId,
           geoName: details.geoName,
           geoPrice,
-          discountPrice: values.discountPrice,
+          discountPrice: parseFloat(values.discountPrice),
           features: featurePrices
             .filter(item => featureIds.indexOf(item.featureId) > -1)
             .map(item => ({

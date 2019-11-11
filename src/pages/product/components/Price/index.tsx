@@ -28,11 +28,12 @@ class Price extends React.Component<PriceProps> {
   handleSubmit = (e: any) => {
     const { handleFormSubmit, form, info } = this.props;
     e.preventDefault();
-    form.validateFieldsAndScroll((err, values) => {
+    form.validateFieldsAndScroll((err, value) => {
       if (!err) {
         handleFormSubmit({
           ...info,
-          ...values,
+          ...value,
+          productPrice: parseFloat(value.productPrice),
         });
       }
     });

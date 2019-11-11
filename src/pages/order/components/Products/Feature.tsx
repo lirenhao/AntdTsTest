@@ -2,6 +2,7 @@ import React from 'react';
 import { Radio, Checkbox } from 'antd';
 import { RadioChangeEvent } from 'antd/es/radio';
 import { ProductFeature } from '@/pages/product/data';
+import { CheckboxValueType } from 'antd/lib/checkbox/Group';
 
 interface FeatureProps {
   value?: string[];
@@ -17,9 +18,9 @@ class Feature extends React.Component<FeatureProps> {
     if (onChange) onChange([value]);
   };
 
-  handleCheckbox = (values: any[]) => {
+  handleCheckbox = (values: CheckboxValueType[]) => {
     const { onChange } = this.props;
-    if (onChange) onChange(values);
+    if (onChange) onChange(values.map(item => item.toString()));
   }
 
   render() {
