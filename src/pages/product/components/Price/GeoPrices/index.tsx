@@ -10,38 +10,27 @@ const { Panel } = Collapse;
 
 interface GeoPricesProps {
   geo?: GeoDict[];
+  product: Partial<Product>;
   value?: GeoPrice[];
   onChange?: (value: GeoPrice[]) => void;
-  product: Partial<Product>;
 }
 
-@connect(({ dict }: { dict: DictStateType; }) => ({
-  geo: dict.geo,
-}))
-class GeoPrices extends React.Component<GeoPricesProps> {
-  constructor(props: GeoPricesProps) {
-    super(props);
-    this.state = {
-      value: props.value || [],
-    };
-  }
+const GeoPrices: React.SFC<GeoPricesProps> = props => {
+  const { geo, product, value, onChange } = props;
 
-  getGeoName = (geoId: string) => {
-    const { geo } = this.props;
+  const getGeoName = (geoId: string) => {
     const geos = (geo || [])
       .filter(item => item.geoId === geoId);
     return geos.length > 0 ? geos[0].geoName : geoId;
   };
 
-  handleChange = (geoId: string) => (geoPrice: GeoPrice) => {
-    const { value, onChange } = this.props;
+  const handleChange = (geoId: string) => (geoPrice: GeoPrice) => {
     const newValue = (value || [])
       .map((item: GeoPrice) => (item.geoId === geoId ? geoPrice : item));
     if (onChange) onChange(newValue);
   };
 
-  handleCopy = (geoIds: string[], geoPrices: GeoPrice[]) => {
-    const { value, onChange } = this.props;
+  const handleCopy = (geoIds: string[], geoPrices: GeoPrice[]) => {
     const newValue = (value || [])
       .map(item =>
         geoIds.indexOf(item.geoId) < 0
@@ -54,34 +43,32 @@ class GeoPrices extends React.Component<GeoPricesProps> {
     if (onChange) onChange(newValue);
   };
 
-  render() {
-    const { product, value } = this.props;
-
-    return (
-      <Collapse accordion>
-        {(product.geoIds || []).map((geoId: string) => (
-          <Panel
-            key={geoId}
-            header={
-              <Header
-                title={this.getGeoName(geoId)}
-                value={(value || []).filter(item => item.geoId === geoId)[0] || {}}
-                geoId={geoId}
-                onCopy={this.handleCopy}
-                options={(product.geoIds || []).map(id => ({ value: id, title: this.getGeoName(id) }))}
-              />
-            }
-          >
-            <Price
-              product={product}
+  return (
+    <Collapse accordion>
+      {(product.geoIds || []).map((geoId: string) => (
+        <Panel
+          key={geoId}
+          header={
+            <Header
+              title={getGeoName(geoId)}
               value={(value || []).filter(item => item.geoId === geoId)[0] || {}}
-              onChange={this.handleChange(geoId)}
+              geoId={geoId}
+              onCopy={handleCopy}
+              options={(product.geoIds || []).map(id => ({ value: id, title: getGeoName(id) }))}
             />
-          </Panel>
-        ))}
-      </Collapse>
-    );
-  }
+          }
+        >
+          <Price
+            product={product}
+            value={(value || []).filter(item => item.geoId === geoId)[0] || {}}
+            onChange={handleChange(geoId)}
+          />
+        </Panel>
+      ))}
+    </Collapse>
+  );
 }
 
-export default GeoPrices;
+export default connect(({ dict }: { dict: DictStateType; }) => ({
+  geo: dict.geo,
+}))(GeoPrices);

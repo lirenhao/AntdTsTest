@@ -18,15 +18,10 @@ interface PriceProps extends FormComponentProps {
   handleFormSubmit(e: any): void;
 }
 
-@connect(({ loading }: {
-  loading: { effects: { [key: string]: boolean } };
-}) => ({
-  loading: loading.effects['product/savePrice'],
-}))
-class Price extends React.Component<PriceProps> {
+const Price: React.SFC<PriceProps> = props => {
+  const { title, visible, hideModal, handleFormSubmit, form, product, info, loading } = props;
 
-  handleSubmit = (e: any) => {
-    const { handleFormSubmit, form, info } = this.props;
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, value) => {
       if (!err) {
@@ -39,49 +34,49 @@ class Price extends React.Component<PriceProps> {
     });
   };
 
-  render() {
-    const { title, visible, hideModal, form, product, info, loading } = this.props;
-
-    return (
-      <Drawer
-        title={title}
-        width="70%"
-        destroyOnClose
-        maskClosable={false}
-        visible={visible}
-        onClose={hideModal}
+  return (
+    <Drawer
+      title={title}
+      width="70%"
+      destroyOnClose
+      maskClosable={false}
+      visible={visible}
+      onClose={hideModal}
+    >
+      <Form>
+        <Create form={form} product={product} info={info} />
+      </Form>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          width: '100%',
+          borderTop: '1px solid #e8e8e8',
+          padding: '10px 16px',
+          textAlign: 'right',
+          left: 0,
+          background: '#fff',
+          borderRadius: '0 0 4px 4px',
+        }}
       >
-        <Form>
-          <Create form={form} product={product} info={info} />
-        </Form>
-        <div
+        <Button
           style={{
-            position: 'absolute',
-            bottom: 0,
-            width: '100%',
-            borderTop: '1px solid #e8e8e8',
-            padding: '10px 16px',
-            textAlign: 'right',
-            left: 0,
-            background: '#fff',
-            borderRadius: '0 0 4px 4px',
+            marginRight: 8,
           }}
+          onClick={hideModal}
         >
-          <Button
-            style={{
-              marginRight: 8,
-            }}
-            onClick={hideModal}
-          >
-            取消
-          </Button>
-          <Button onClick={this.handleSubmit} type="primary" loading={loading}>
-            提交
-          </Button>
-        </div>
-      </Drawer>
-    );
-  }
+          取消
+        </Button>
+        <Button onClick={handleSubmit} type="primary" loading={loading}>
+          提交
+        </Button>
+      </div>
+    </Drawer>
+  );
 }
 
-export default Form.create<PriceProps>()(Price);
+export default Form.create<PriceProps>()(connect(({ loading }: {
+  loading: { effects: { [key: string]: boolean } };
+}) => ({
+  loading: loading.effects['product/savePrice'],
+}))(Price));
