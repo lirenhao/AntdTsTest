@@ -20,103 +20,72 @@ interface CreateProps {
   handleFormSubmit(value: OrderType): void;
 }
 
-interface CreateState {
-  current: number;
-  info: Partial<OrderType>;
-}
+const Create: React.FC<CreateProps> = props => {
 
-@connect(({ dict }: { dict: DictStateType; }) => ({
-  productType: dict.productType,
-  productCategoty: dict.productCategoty,
-  geo: dict.geo,
-}))
-class Create extends React.Component<CreateProps, CreateState> {
-  constructor(props: CreateProps) {
-    super(props);
-    this.state = {
-      current: 0,
-      info: props.info || {},
-    };
-  }
+  const [current, setCurrent] = React.useState<number>(0);
+  const [info, setInfo] = React.useState<Partial<OrderType>>({});
 
-  static getDerivedStateFromProps(nextProps: CreateProps, prevState: CreateState) {
-    if (nextProps.info.orderId === prevState.info.orderId) {
-      return null;
-    }
-    return {
-      current: 0,
-      info: nextProps.info,
-    };
-  }
+  const { title, visible, hideModal, handleFormSubmit } = props;
 
-  handleNext = () => {
-    const { current } = this.state;
-    this.setState({ current: current + 1 });
+  if (info.orderId !== props.info.orderId) setInfo(props.info);
+
+  const handleNext = () => {
+    setCurrent(current + 1);
   };
 
-  handlePrev = () => {
-    const { current } = this.state;
-    this.setState({ current: current - 1 });
+  const handlePrev = () => {
+    setCurrent(current - 1);
   };
 
-  handleProducts = (products: ProductType[]) => {
-    const { info } = this.state;
-    this.setState({
-      info: {
-        ...info,
-        products,
-      },
+  const handleProducts = (products: ProductType[]) => {
+    setInfo({
+      ...info,
+      products,
     });
-    this.handleNext();
+    handleNext();
   };
 
-  handleBasicInfo = (basicInfo: Partial<OrderType>) => {
-    const { info } = this.state;
-    this.setState({
-      info: {
-        ...info,
-        ...basicInfo,
-      },
+  const handleBasicInfo = (basicInfo: Partial<OrderType>) => {
+    setInfo({
+      ...info,
+      ...basicInfo,
     });
-    this.handleNext();
+    handleNext();
   };
 
-  handleSubmit = (value: OrderType) => {
-    const { handleFormSubmit } = this.props;
+  const handleSubmit = (value: OrderType) => {
     handleFormSubmit(value);
   };
 
-  render() {
-    const { title, visible, hideModal } = this.props;
-
-    const { current, info } = this.state;
-
-    return (
-      <Drawer
-        title={title}
-        width="70%"
-        destroyOnClose
-        maskClosable={false}
-        visible={visible}
-        onClose={hideModal}
-      >
-        <Steps current={current}>
-          <Steps.Step title="选择订单服务" />
-          <Steps.Step title="输入订单信息" />
-          <Steps.Step title="完成" />
-        </Steps>
-        {current === 0 && (
-          <Products products={info.products || []} handleNext={this.handleProducts} />
-        )}
-        {current === 1 && (
-          <BasicInfo info={info} handleNext={this.handleBasicInfo} handlePrev={this.handlePrev} />
-        )}
-        {current === 2 && (
-          <Result info={info} handleNext={this.handleSubmit} handlePrev={this.handlePrev} />
-        )}
-      </Drawer>
-    );
-  }
+  return (
+    <Drawer
+      title={title}
+      width="70%"
+      destroyOnClose
+      maskClosable={false}
+      visible={visible}
+      onClose={hideModal}
+    >
+      <Steps current={current}>
+        <Steps.Step title="选择订单服务" />
+        <Steps.Step title="输入订单信息" />
+        <Steps.Step title="完成" />
+      </Steps>
+      {current === 0 && (
+        <Products products={info.products || []} handleNext={handleProducts} />
+      )}
+      {current === 1 && (
+        <BasicInfo info={info} handleNext={handleBasicInfo} handlePrev={handlePrev} />
+      )}
+      {current === 2 && (
+        <Result info={info} handleNext={handleSubmit} handlePrev={handlePrev} />
+      )}
+    </Drawer>
+  );
 }
 
-export default Create;
+export default connect(({ dict }: { dict: DictStateType; }) => ({
+  productType: dict.productType,
+  productCategoty: dict.productCategoty,
+  geo: dict.geo,
+}))(Create);

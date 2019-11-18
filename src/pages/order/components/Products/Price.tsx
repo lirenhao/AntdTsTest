@@ -20,57 +20,37 @@ interface PriceProps extends FormComponentProps {
   handlePrev(): void;
 }
 
-const formItemLayout = {
-  labelCol: {
-    span: 5,
-  },
-  wrapperCol: {
-    span: 19,
-  },
-};
+const Price: React.SFC<PriceProps> = props => {
 
-@connect(({ dict, loading }: {
-  dict: DictStateType;
-  loading: { models: { [key: string]: boolean; } }
-}) => ({
-  geo: dict.geo,
-  productFeatureType: dict.productFeatureType,
-  productFeature: dict.productFeature,
-  loading: loading.models.order,
-}))
-class Price extends React.PureComponent<PriceProps> {
+  const { geo, productFeatureType, productFeature, form,
+    details, productInfos, productPrice, handlePrev, handleNext, loading } = props;
 
-  getGeoName = (geoId: string) => {
-    const { geo } = this.props;
+  const getGeoName = (geoId: string) => {
     const geos = (geo || [])
       .filter(item => item.geoId === geoId);
     return geos.length > 0 ? geos[0].geoName : geoId;
   };
 
-  getGeoPrice = (geoId: string) => {
-    const { productPrice } = this.props;
+  const getGeoPrice = (geoId: string) => {
     const geoPrices = (productPrice.geoPrices || [])
       .filter(item => item.geoId === geoId);
     return geoPrices.length > 0 ? geoPrices[0] : { geoPrice: 0, featurePrices: [] };
   };
 
-  getFeatureTypeName = (featureTypeId: string) => {
-    const { productFeatureType } = this.props;
+  const getFeatureTypeName = (featureTypeId: string) => {
     const featureTypes = (productFeatureType || [])
       .filter(item => item.productFeatureTypeId === featureTypeId);
     return featureTypes.length > 0 ? featureTypes[0].productFeatureTypeName : featureTypeId;
   };
 
-  getFeatureName = (featureId: string) => {
-    const { productFeature } = this.props;
+  const getFeatureName = (featureId: string) => {
     const features = (productFeature || [])
       .filter(item => item.productFeatureId === featureId);
     const featureName = features.length > 0 ? features[0].productFeatureName : featureId;
     return featureName;
   };
 
-  getFeaturePrice = (featureId: string) => {
-    const { productPrice, details } = this.props;
+  const getFeaturePrice = (featureId: string) => {
     const geoPrices = (productPrice.geoPrices || [])
       .filter(item => item.geoId === details.geoId);
     const featurePrices = geoPrices.length > 0 ? geoPrices[0].featurePrices : [];
@@ -78,9 +58,8 @@ class Price extends React.PureComponent<PriceProps> {
     return featurePrice.featurePrice;
   };
 
-  handleSubmit = (e: any) => {
-    const { details, productPrice, form, handleNext } = this.props;
-    const { featurePrices } = this.getGeoPrice(details.geoId || '');
+  const handleSubmit = (e: any) => {
+    const { featurePrices } = getGeoPrice(details.geoId || '');
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
@@ -103,7 +82,7 @@ class Price extends React.PureComponent<PriceProps> {
             .filter(item => featureIds.indexOf(item.featureId) > -1)
             .map(item => ({
               ...item,
-              featureName: this.getFeatureName(item.featureId),
+              featureName: getFeatureName(item.featureId),
             })),
         };
         handleNext(result);
@@ -111,82 +90,92 @@ class Price extends React.PureComponent<PriceProps> {
     });
   };
 
-  render() {
-    const {
-      form: { getFieldDecorator },
-      details,
-      productInfos,
-      productPrice,
-      handlePrev,
-      loading,
-    } = this.props;
-    const productInfo = productInfos
-      .filter((item: Product) => item.productId === details.productId)[0] || {}
-    const features = [
-      ...(productInfo.fixFeatures || []),
-      ...(productInfo.mustFeatures || []),
-      ...(productInfo.optionFeatures || []),
-    ];
+  const formItemLayout = {
+    labelCol: {
+      span: 5,
+    },
+    wrapperCol: {
+      span: 19,
+    },
+  };
 
-    return (
-      <Form layout="horizontal" className={styles.stepForm}>
-        <Form.Item {...formItemLayout} className={styles.stepFormText} label="产品">
-          {`${productInfo.productName}[${productPrice.productPrice}]`}
-        </Form.Item>
-        <Form.Item {...formItemLayout} className={styles.stepFormText} label="区域">
-          {`${this.getGeoName(details.geoId || '')}[${this.getGeoPrice(details.geoId || '').geoPrice}]`}
-        </Form.Item>
-        <Form.Item {...formItemLayout} label="优惠金额">
-          {getFieldDecorator('discountPrice', {
-            initialValue: 0,
-            rules: [
-              {
-                required: true,
-                message: '请输入优惠金额',
-              },
-              {
-                pattern: /^(\d+)((?:\.\d{1,2})?)$/,
-                message: '请输入合法金额数字',
-              },
-            ],
-          })(<Input placeholder="请输入" />)}
-        </Form.Item>
-        {features.map((feature, index) => (
-          <Form.Item
-            {...formItemLayout}
-            key={`${feature.featureTypeId}-${index}`}
-            label={this.getFeatureTypeName(feature.featureTypeId)}
-          >
-            {getFieldDecorator(`featureType#${index}#${feature.featureTypeId}`)(
-              <Feature
-                feature={feature}
-                getFeatureName={featureId =>
-                  `${this.getFeatureName(featureId)}[${this.getFeaturePrice(featureId)}]`
-                }
-              />
-            )}
-          </Form.Item>
-        ))}
-        <Form.Item
-          style={{ marginBottom: 8 }}
-          wrapperCol={{
-            xs: { span: 24, offset: 0 },
-            sm: {
-              span: formItemLayout.wrapperCol.span,
-              offset: formItemLayout.labelCol.span,
+  const productInfo = productInfos
+    .filter((item: Product) => item.productId === details.productId)[0] || {}
+  const features = [
+    ...(productInfo.fixFeatures || []),
+    ...(productInfo.mustFeatures || []),
+    ...(productInfo.optionFeatures || []),
+  ];
+  const { getFieldDecorator } = form;
+
+  return (
+    <Form layout="horizontal" className={styles.stepForm}>
+      <Form.Item {...formItemLayout} className={styles.stepFormText} label="产品">
+        {`${productInfo.productName}[${productPrice.productPrice}]`}
+      </Form.Item>
+      <Form.Item {...formItemLayout} className={styles.stepFormText} label="区域">
+        {`${getGeoName(details.geoId || '')}[${getGeoPrice(details.geoId || '').geoPrice}]`}
+      </Form.Item>
+      <Form.Item {...formItemLayout} label="优惠金额">
+        {getFieldDecorator('discountPrice', {
+          initialValue: 0,
+          rules: [
+            {
+              required: true,
+              message: '请输入优惠金额',
             },
-          }}
+            {
+              pattern: /^(\d+)((?:\.\d{1,2})?)$/,
+              message: '请输入合法金额数字',
+            },
+          ],
+        })(<Input placeholder="请输入" />)}
+      </Form.Item>
+      {features.map((feature, index) => (
+        <Form.Item
+          {...formItemLayout}
+          key={`${feature.featureTypeId}-${index}`}
+          label={getFeatureTypeName(feature.featureTypeId)}
         >
-          <Button type="primary" onClick={this.handleSubmit} loading={loading}>
-            提 交
-          </Button>
-          <Button onClick={handlePrev} style={{ marginLeft: 8 }}>
-            上一步
-          </Button>
+          {getFieldDecorator(`featureType#${index}#${feature.featureTypeId}`)(
+            <Feature
+              feature={feature}
+              getFeatureName={featureId =>
+                `${getFeatureName(featureId)}[${getFeaturePrice(featureId)}]`
+              }
+            />
+          )}
         </Form.Item>
-      </Form>
-    );
-  }
+      ))}
+      <Form.Item
+        style={{ marginBottom: 8 }}
+        wrapperCol={{
+          xs: { span: 24, offset: 0 },
+          sm: {
+            span: formItemLayout.wrapperCol.span,
+            offset: formItemLayout.labelCol.span,
+          },
+        }}
+      >
+        <Button type="primary" onClick={handleSubmit} loading={loading}>
+          提 交
+      </Button>
+        <Button onClick={handlePrev} style={{ marginLeft: 8 }}>
+          上一步
+      </Button>
+      </Form.Item>
+    </Form>
+  );
 }
 
-export default Form.create<PriceProps>()(Price);
+export default Form.create<PriceProps>()(
+  connect(({ dict, loading }: {
+    dict: DictStateType;
+    loading: { models: { [key: string]: boolean; } }
+  }) => ({
+    geo: dict.geo,
+    productFeatureType: dict.productFeatureType,
+    productFeature: dict.productFeature,
+    loading: loading.models.order,
+  }))(Price)
+);

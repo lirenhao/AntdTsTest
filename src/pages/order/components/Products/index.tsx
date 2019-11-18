@@ -15,22 +15,70 @@ interface ProductsProps {
   handleNext: (products: ProductType[]) => void;
 }
 
-interface PrdouctsState {
-  isCreateShow: boolean;
-  isUpdateShow: boolean;
-  products: ProductType[];
-  info: Partial<ProductType>;
-  productInfo: Partial<Product>;
-  productPrice: Partial<ProductPrice>;
-}
+const Products: React.FC<ProductsProps> = props => {
 
-@connect(({ loading }: {
-  loading: { effects: { [key: string]: boolean } };
-}) => ({
-  loading: loading.effects['order/findProductPrice'],
-}))
-class Products extends React.Component<ProductsProps, PrdouctsState> {
-  columns = [
+  const [isCreateShow, setIsCreateShow] = React.useState<boolean>(false);
+  const [isUpdateShow, setIsUpdateShow] = React.useState<boolean>(false);
+  const [products, setProducts] = React.useState<ProductType[]>(props.products || []);
+  const [info, setInfo] = React.useState<Partial<ProductType>>({});
+  const [productInfo, setProductInfo] = React.useState<Partial<Product>>({});
+  const [productPrice, setProductPrice] = React.useState<Partial<ProductPrice>>({});
+
+  const { dispatch, handleNext, loading } = props;
+
+  const handleAddModal = (visible: boolean) => {
+    setIsCreateShow(visible);
+  };
+
+  const handleAddForm = (record: ProductType) => {
+    setProducts([...products, record]);
+    handleAddModal(false);
+  };
+
+  const handleUpdateModal = (visible: boolean) => {
+    setIsUpdateShow(visible);
+  };
+
+  const handleUpdate = (record: ProductType) => {
+    dispatch && dispatch({
+      type: 'order/findProductPrice',
+      payload: record.productId,
+      callback: (resp: {
+        productInfo: Product;
+        productPrice: ProductPrice;
+      }) => {
+        if (resp) {
+          setInfo(record);
+          setProductInfo(resp.productInfo);
+          setProductPrice(resp.productPrice);
+          handleUpdateModal(true);
+        }
+      },
+    });
+  };
+
+  const handleUpdateForm = (record: ProductType) => {
+    setProducts(products.map((item: ProductType) =>
+      item.productId === record.productId ? { ...item, ...record } : item
+    ));
+    handleUpdateModal(false);
+  };
+
+  const handleRemove = (record: ProductType) => {
+    setProducts(products.filter((item: ProductType) => item.productId !== record.productId));
+  };
+
+  const expandedRowRender = (record: ProductType) => {
+    const columns = [
+      { title: '属性', dataIndex: 'featureName', key: 'featureId' },
+      { title: '属性价格', dataIndex: 'featurePrice', key: 'featurePrice' },
+    ];
+    return (
+      <Table columns={columns} rowKey="featureId" dataSource={record.features} pagination={false} />
+    );
+  };
+
+  const columns = [
     { title: '产品', dataIndex: 'productName', key: 'productId' },
     { title: '产品金额', dataIndex: 'productPrice', key: 'productPrice' },
     { title: '区域', dataIndex: 'geoName', key: 'geoId' },
@@ -49,152 +97,77 @@ class Products extends React.Component<ProductsProps, PrdouctsState> {
       title: '操作',
       render: (_: string, record: ProductType) => (
         <React.Fragment>
-          <a onClick={() => this.handleRemove(record)}>删除</a>
+          <a onClick={() => handleRemove(record)}>删除</a>
           <Divider type="vertical" />
-          <a onClick={() => this.handleUpdate(record)}>修改</a>
+          <a onClick={() => handleUpdate(record)}>修改</a>
         </React.Fragment>
       ),
     },
   ];
 
-  constructor(props: ProductsProps) {
-    super(props);
-    this.state = {
-      isCreateShow: false,
-      isUpdateShow: false,
-      products: props.products || [],
-      info: {},
-      productInfo: {},
-      productPrice: {},
-    };
-  }
-
-  handleAddModal = (visible: boolean) => {
-    this.setState({ isCreateShow: visible });
-  };
-
-  handleAddForm = (record: ProductType) => {
-    const { products } = this.state;
-    this.setState({ products: [...products, record] });
-    this.handleAddModal(false);
-  };
-
-  handleUpdateModal = (visible: boolean) => {
-    this.setState({ isUpdateShow: visible });
-  };
-
-  handleUpdate = (record: ProductType) => {
-    const { dispatch } = this.props;
-    dispatch && dispatch({
-      type: 'order/findProductPrice',
-      payload: record.productId,
-      callback: (resp: {
-        productInfo: Product;
-        productPrice: ProductPrice;
-      }) => {
-        if (resp) {
-          this.setState({
-            info: record,
-            productInfo: resp.productInfo,
-            productPrice: resp.productPrice,
-          });
-          this.handleUpdateModal(true);
-        }
-      },
-    });
-  };
-
-  handleUpdateForm = (record: ProductType) => {
-    const { products } = this.state;
-    this.setState({
-      products: products.map((item: ProductType) =>
-        item.productId === record.productId ? { ...item, ...record } : item
-      ),
-    });
-    this.handleUpdateModal(false);
-  };
-
-  handleRemove = (record: ProductType) => {
-    const { products } = this.state;
-    this.setState({
-      products: products.filter((item: ProductType) => item.productId !== record.productId),
-    });
-  };
-
-  expandedRowRender = (record: ProductType) => {
-    const columns = [
-      { title: '属性', dataIndex: 'featureName', key: 'featureId' },
-      { title: '属性价格', dataIndex: 'featurePrice', key: 'featurePrice' },
-    ];
-    return (
-      <Table columns={columns} rowKey="featureId" dataSource={record.features} pagination={false} />
-    );
-  };
-
-  render() {
-    const { loading, handleNext } = this.props;
-    const { isCreateShow, isUpdateShow, products, info, productInfo, productPrice } = this.state;
-
-    return (
-      <React.Fragment>
-        <div
-          style={{
-            marginTop: '16px',
-            border: '1px dashed #e9e9e9',
-            borderRadius: '6px',
-            backgroundColor: '#fafafa',
-            minHeight: '200px',
-            textAlign: 'center',
-          }}
+  return (
+    <React.Fragment>
+      <div
+        style={{
+          marginTop: '16px',
+          border: '1px dashed #e9e9e9',
+          borderRadius: '6px',
+          backgroundColor: '#fafafa',
+          minHeight: '200px',
+          textAlign: 'center',
+        }}
+      >
+        <Card
+          title="已选服务"
+          bordered={false}
+          extra={<a onClick={() => handleAddModal(true)}>添加</a>}
         >
-          <Card
-            title="已选服务"
-            bordered={false}
-            extra={<a onClick={() => this.handleAddModal(true)}>添加</a>}
-          >
-            <Table
-              loading={loading}
-              columns={this.columns}
-              dataSource={products}
-              rowKey="productId"
-              pagination={false}
-              expandedRowRender={this.expandedRowRender}
-            />
-            <Create
-              visible={isCreateShow}
-              hideModal={() => this.handleAddModal(false)}
-              handleFormSubmit={this.handleAddForm}
-              info={{}}
-            />
-            <Update
-              visible={isUpdateShow}
-              hideModal={() => this.handleUpdateModal(false)}
-              handleFormSubmit={this.handleUpdateForm}
-              info={info || {}}
-              productInfo={productInfo || {}}
-              productPrice={productPrice || {}}
-            />
-          </Card>
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            width: '100%',
-            borderTop: '1px solid #e8e8e8',
-            padding: '10px 16px',
-            left: 0,
-            background: '#fff',
-            borderRadius: '0 0 4px 4px',
-          }}
-        >
-          <Button type="primary" onClick={() => handleNext(products)}>
-            下一步
-          </Button>
-        </div>
-      </React.Fragment>
-    );
-  }
+          <Table
+            loading={loading}
+            columns={columns}
+            dataSource={products}
+            rowKey="productId"
+            pagination={false}
+            expandedRowRender={expandedRowRender}
+          />
+          <Create
+            visible={isCreateShow}
+            hideModal={() => handleAddModal(false)}
+            handleFormSubmit={handleAddForm}
+            info={{}}
+          />
+          <Update
+            visible={isUpdateShow}
+            hideModal={() => handleUpdateModal(false)}
+            handleFormSubmit={handleUpdateForm}
+            info={info || {}}
+            productInfo={productInfo || {}}
+            productPrice={productPrice || {}}
+          />
+        </Card>
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          width: '100%',
+          borderTop: '1px solid #e8e8e8',
+          padding: '10px 16px',
+          left: 0,
+          background: '#fff',
+          borderRadius: '0 0 4px 4px',
+        }}
+      >
+        <Button type="primary" onClick={() => handleNext(products)}>
+          下一步
+        </Button>
+      </div>
+    </React.Fragment>
+  );
 }
 
-export default Products;
+export default connect(({ loading }: {
+  loading: { effects: { [key: string]: boolean } };
+}) => ({
+  loading: loading.effects['order/findProductPrice'],
+}))(Products);

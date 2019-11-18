@@ -19,51 +19,35 @@ interface UpdateProps extends FormComponentProps {
   handleFormSubmit(value: Partial<ProductType>): void;
 }
 
-@connect(({ dict, loading }: {
-  dict: DictStateType;
-  loading: {
-    models: {
-      [key: string]: boolean;
-    };
-  };
-}) => ({
-  geo: dict.geo,
-  productFeatureType: dict.productFeatureType,
-  productFeature: dict.productFeature,
-  loading: loading.models.order,
-}))
-class Update extends React.Component<UpdateProps> {
+const Update: React.SFC<UpdateProps> = props => {
+  const { geo, productFeatureType, productFeature, productPrice,
+    handleFormSubmit, form, info, productInfo, visible, hideModal } = props;
 
-  getGeoName = (geoId: string) => {
-    const { geo } = this.props;
+  const getGeoName = (geoId: string) => {
     const geos = (geo || [])
       .filter(item => item.geoId === geoId);
     return geos.length > 0 ? geos[0].geoName : geoId;
   };
 
-  getGeoPrice = (geoId: string) => {
-    const { productPrice } = this.props;
+  const getGeoPrice = (geoId: string) => {
     const geoPrices = (productPrice.geoPrices || []).filter(item => item.geoId === geoId);
     return geoPrices.length > 0 ? geoPrices[0] : { geoPrice: '', featurePrices: [] };
   };
 
-  getFeatureTypeName = (featureTypeId: string) => {
-    const { productFeatureType } = this.props;
+  const getFeatureTypeName = (featureTypeId: string) => {
     const featureTypes = (productFeatureType || [])
       .filter(item => item.productFeatureTypeId === featureTypeId);
     return featureTypes.length > 0 ? featureTypes[0].productFeatureTypeName : featureTypeId;
   };
 
-  getFeatureName = (featureId: string) => {
-    const { productFeature } = this.props;
+  const getFeatureName = (featureId: string) => {
     const features = (productFeature || [])
       .filter(item => item.productFeatureId === featureId);
     const featureName = features.length > 0 ? features[0].productFeatureName : featureId;
     return featureName;
   };
 
-  getFeaturePrice = (featureId: string) => {
-    const { info, productPrice } = this.props;
+  const getFeaturePrice = (featureId: string) => {
     const geoPrices = (productPrice.geoPrices || [])
       .filter(item => item.geoId === info.geoId);
     const featurePrices = geoPrices.length > 0 ? geoPrices[0].featurePrices : [];
@@ -72,9 +56,8 @@ class Update extends React.Component<UpdateProps> {
     return featurePrice.featurePrice;
   };
 
-  handleSubmit = (e: any) => {
-    const { handleFormSubmit, form, info, productInfo } = this.props;
-    const { featurePrices } = this.getGeoPrice(info.geoId || '');
+  const handleSubmit = (e: any) => {
+    const { featurePrices } = getGeoPrice(info.geoId || '');
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
@@ -87,14 +70,14 @@ class Update extends React.Component<UpdateProps> {
           productName: productInfo.productName,
           productPrice: info.productPrice,
           geoId: info.geoId,
-          geoName: this.getGeoName(info.geoId || ''),
+          geoName: getGeoName(info.geoId || ''),
           geoPrice: info.geoPrice,
           discountPrice: parseFloat(values.discountPrice),
           features: featurePrices
             .filter(item => featureIds.indexOf(item.featureId) > -1)
             .map(item => ({
               ...item,
-              featureName: this.getFeatureName(item.featureId),
+              featureName: getFeatureName(item.featureId),
             })),
         };
         handleFormSubmit(result);
@@ -103,90 +86,96 @@ class Update extends React.Component<UpdateProps> {
     });
   };
 
-  render() {
-    const {
-      visible,
-      hideModal,
-      form: { getFieldDecorator },
-      info,
-      productInfo,
-      productPrice,
-    } = this.props;
-    const features = [
-      ...(productInfo.fixFeatures || []),
-      ...(productInfo.mustFeatures || []),
-      ...(productInfo.optionFeatures || []),
-    ];
+  const features = [
+    ...(productInfo.fixFeatures || []),
+    ...(productInfo.mustFeatures || []),
+    ...(productInfo.optionFeatures || []),
+  ];
 
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 7 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 12 },
-        md: { span: 10 },
-      },
-    };
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 7 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 12 },
+      md: { span: 10 },
+    },
+  };
 
-    return (
-      <Modal
-        width="60%"
-        bodyStyle={{ padding: '32px 40px 48px' }}
-        title="修改服务"
-        maskClosable={false}
-        visible={visible}
-        okText="提交"
-        onOk={this.handleSubmit}
-        onCancel={hideModal}
-      >
-        <Form layout="horizontal">
-          <Form.Item {...formItemLayout} label="产品">
-            {`${productInfo.productName}[${productPrice.productPrice}]`}
+  const { getFieldDecorator } = form;
+
+  return (
+    <Modal
+      width="60%"
+      bodyStyle={{ padding: '32px 40px 48px' }}
+      title="修改服务"
+      maskClosable={false}
+      visible={visible}
+      okText="提交"
+      onOk={handleSubmit}
+      onCancel={hideModal}
+    >
+      <Form layout="horizontal">
+        <Form.Item {...formItemLayout} label="产品">
+          {`${productInfo.productName}[${productPrice.productPrice}]`}
+        </Form.Item>
+        <Form.Item {...formItemLayout} label="区域">
+          {`${getGeoName(info.geoId || '')}[${getGeoPrice(info.geoId || '').geoPrice}]`}
+        </Form.Item>
+        <Form.Item {...formItemLayout} label="优惠金额">
+          {getFieldDecorator('discountPrice', {
+            initialValue: info.discountPrice,
+            rules: [
+              {
+                required: true,
+                message: '请输入优惠金额',
+              },
+              {
+                pattern: /^(\d+)((?:\.\d{1,2})?)$/,
+                message: '请输入合法金额数字',
+              },
+            ],
+          })(<Input placeholder="请输入" />)}
+        </Form.Item>
+        {features.map((feature, index) => (
+          <Form.Item
+            {...formItemLayout}
+            key={`${feature.featureTypeId}-${index}`}
+            label={getFeatureTypeName(feature.featureTypeId)}
+          >
+            {getFieldDecorator(`featureType#${index}#${feature.featureTypeId}`, {
+              initialValue: (info.features || [])
+                .map((item: FeatureType) => item.featureId)
+                .filter((id: string) => feature.featureIds.indexOf(id) > -1),
+            })(
+              <Feature
+                feature={feature}
+                getFeatureName={featureId =>
+                  `${getFeatureName(featureId)}[${getFeaturePrice(featureId)}]`
+                }
+              />
+            )}
           </Form.Item>
-          <Form.Item {...formItemLayout} label="区域">
-            {`${this.getGeoName(info.geoId || '')}[${this.getGeoPrice(info.geoId || '').geoPrice}]`}
-          </Form.Item>
-          <Form.Item {...formItemLayout} label="优惠金额">
-            {getFieldDecorator('discountPrice', {
-              initialValue: info.discountPrice,
-              rules: [
-                {
-                  required: true,
-                  message: '请输入优惠金额',
-                },
-                {
-                  pattern: /^(\d+)((?:\.\d{1,2})?)$/,
-                  message: '请输入合法金额数字',
-                },
-              ],
-            })(<Input placeholder="请输入" />)}
-          </Form.Item>
-          {features.map((feature, index) => (
-            <Form.Item
-              {...formItemLayout}
-              key={`${feature.featureTypeId}-${index}`}
-              label={this.getFeatureTypeName(feature.featureTypeId)}
-            >
-              {getFieldDecorator(`featureType#${index}#${feature.featureTypeId}`, {
-                initialValue: (info.features || [])
-                  .map((item: FeatureType) => item.featureId)
-                  .filter((id: string) => feature.featureIds.indexOf(id) > -1),
-              })(
-                <Feature
-                  feature={feature}
-                  getFeatureName={featureId =>
-                    `${this.getFeatureName(featureId)}[${this.getFeaturePrice(featureId)}]`
-                  }
-                />
-              )}
-            </Form.Item>
-          ))}
-        </Form>
-      </Modal>
-    );
-  }
+        ))}
+      </Form>
+    </Modal>
+  );
 }
 
-export default Form.create<UpdateProps>()(Update);
+export default Form.create<UpdateProps>()(
+  connect(({ dict, loading }: {
+    dict: DictStateType;
+    loading: {
+      models: {
+        [key: string]: boolean;
+      };
+    };
+  }) => ({
+    geo: dict.geo,
+    productFeatureType: dict.productFeatureType,
+    productFeature: dict.productFeature,
+    loading: loading.models.order,
+  }))(Update)
+);

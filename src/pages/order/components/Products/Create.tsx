@@ -15,102 +15,80 @@ interface CreateProps {
   handleFormSubmit(value: Partial<ProductType>): void;
 }
 
-interface CreateState {
-  current: number;
-  query: Partial<QueryType>;
-  productInfos: Product[];
-  details: Partial<DetailsType>;
-  productPrice: Partial<ProductPrice>;
-}
+const Create: React.FC<CreateProps> = props => {
 
-@connect(({ loading }: {
-  loading: { models: { [key: string]: boolean; } }
-}) => ({
-  loading: loading.models.order,
-}))
-class Create extends React.Component<CreateProps, CreateState> {
-  state = {
-    current: 0,
-    query: {},
-    productInfos: [],
-    details: {
-      productId: undefined
-    },
-    productPrice: {},
-  }
+  const [current, setCurrent] = React.useState<number>(0);
+  const [query, setQuery] = React.useState<Partial<QueryType>>({});
+  const [productInfos, setProductInfos] = React.useState<Product[]>([]);
+  const [details, setDetails] = React.useState<Partial<DetailsType>>({});
+  const [productPrice, setProductPrice] = React.useState<Partial<ProductPrice>>({});
 
-  handleNext = () => {
-    const { current } = this.state;
-    this.setState({ current: current + 1 });
+  const { visible, hideModal, handleFormSubmit } = props;
+
+  const handleNext = () => {
+    setCurrent(current + 1);
   };
 
-  handlePrev = () => {
-    const { current } = this.state;
-    this.setState({ current: current - 1 });
+  const handlePrev = () => {
+    setCurrent(current - 1);
   };
 
-  handleQuery = (query: QueryType, productInfos: Product[]) => {
-    this.setState({
-      query,
-      productInfos,
-    });
-    this.handleNext();
+  const handleQuery = (query: QueryType, productInfos: Product[]) => {
+    setQuery(query);
+    setProductInfos(productInfos);
+    handleNext();
   };
 
-  handleDetails = (details: DetailsType, productPrice: ProductPrice) => {
-    this.setState({
-      details,
-      productPrice,
-    });
-    this.handleNext();
+  const handleDetails = (details: DetailsType, productPrice: ProductPrice) => {
+    setDetails(details);
+    setProductPrice(productPrice);
+    handleNext();
   };
 
-  handleSubmit = (value: ProductType) => {
-    const { handleFormSubmit } = this.props;
-    this.setState({ current: 0 });
+  const handleSubmit = (value: ProductType) => {
+    setCurrent(0);
     handleFormSubmit(value);
   };
 
-  render() {
-    const { visible, hideModal } = this.props;
-    const { current, query, productInfos, details, productPrice } = this.state;
-
-    return (
-      <Modal
-        width="60%"
-        bodyStyle={{ padding: '32px 40px 48px' }}
-        title="添加服务"
-        maskClosable={false}
-        visible={visible}
-        onCancel={hideModal}
-        footer={null}
-      >
-        <Steps current={current}>
-          <Steps.Step title="选择服务类型" />
-          <Steps.Step title="选择服务" />
-          <Steps.Step title="选择服务属性" />
-        </Steps>
-        {current === 0 && <Query info={query} handleNext={this.handleQuery} />}
-        {current === 1 && (
-          <Details
-            info={details}
-            productInfos={productInfos}
-            handleNext={this.handleDetails}
-            handlePrev={this.handlePrev}
-          />
-        )}
-        {current === 2 && (
-          <Price
-            details={details}
-            productInfos={productInfos}
-            productPrice={productPrice}
-            handleNext={this.handleSubmit}
-            handlePrev={this.handlePrev}
-          />
-        )}
-      </Modal>
-    );
-  }
+  return (
+    <Modal
+      width="60%"
+      bodyStyle={{ padding: '32px 40px 48px' }}
+      title="添加服务"
+      maskClosable={false}
+      visible={visible}
+      onCancel={hideModal}
+      footer={null}
+    >
+      <Steps current={current}>
+        <Steps.Step title="选择服务类型" />
+        <Steps.Step title="选择服务" />
+        <Steps.Step title="选择服务属性" />
+      </Steps>
+      {current === 0 && <Query info={query} handleNext={handleQuery} />}
+      {current === 1 && (
+        <Details
+          info={details}
+          productInfos={productInfos}
+          handleNext={handleDetails}
+          handlePrev={handlePrev}
+        />
+      )}
+      {current === 2 && (
+        <Price
+          details={details}
+          productInfos={productInfos}
+          productPrice={productPrice}
+          handleNext={handleSubmit}
+          handlePrev={handlePrev}
+        />
+      )}
+    </Modal>
+  );
 }
 
-export default Create;
+export default connect(({ loading }: {
+  loading: { models: { [key: string]: boolean; } }
+}) => ({
+  loading: loading.models.order,
+}))(Create);

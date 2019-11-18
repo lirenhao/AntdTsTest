@@ -11,46 +11,43 @@ interface FeatureProps {
   getFeatureName(id: string): string;
 }
 
-class Feature extends React.Component<FeatureProps> {
-  handleRadio = (e: RadioChangeEvent) => {
-    const { onChange } = this.props;
+const Feature: React.SFC<FeatureProps> = props => {
+  const { value, onChange, feature, getFeatureName } = props;
+
+  const handleRadio = (e: RadioChangeEvent) => {
     const { value } = e.target;
     if (onChange) onChange([value]);
   };
 
-  handleCheckbox = (values: CheckboxValueType[]) => {
-    const { onChange } = this.props;
+  const handleCheckbox = (values: CheckboxValueType[]) => {
     if (onChange) onChange(values.map(item => item.toString()));
   }
 
-  render() {
-    const { feature, getFeatureName, value } = this.props;
-
-    if (feature.isExclusive === '0') {
-      const ids = (value || [])
-        .filter(item => feature.featureIds.indexOf(item) > -1) || [];
-      return (
-        <Radio.Group defaultValue={ids.length > 0 && ids[0]} onChange={this.handleRadio}>
-          {feature.featureIds.map(featureId => (
-            <Radio key={featureId} value={featureId}>
-              {getFeatureName(featureId)}
-            </Radio>
-          ))}
-        </Radio.Group>
-      );
-    }
-    if (feature.isExclusive === '1')
-      return (
-        <Checkbox.Group defaultValue={value} onChange={this.handleCheckbox}>
-          {feature.featureIds.map(featureId => (
-            <Checkbox key={featureId} value={featureId}>
-              {getFeatureName(featureId)}
-            </Checkbox>
-          ))}
-        </Checkbox.Group>
-      );
-    return <div>没有该类型属性</div>;
+  if (feature.isExclusive === '0') {
+    const ids = (value || [])
+      .filter(item => feature.featureIds.indexOf(item) > -1) || [];
+    return (
+      <Radio.Group defaultValue={ids.length > 0 && ids[0]} onChange={handleRadio}>
+        {feature.featureIds.map(featureId => (
+          <Radio key={featureId} value={featureId}>
+            {getFeatureName(featureId)}
+          </Radio>
+        ))}
+      </Radio.Group>
+    );
   }
+  if (feature.isExclusive === '1') {
+    return (
+      <Checkbox.Group defaultValue={value} onChange={handleCheckbox}>
+        {feature.featureIds.map(featureId => (
+          <Checkbox key={featureId} value={featureId}>
+            {getFeatureName(featureId)}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+    );
+  }
+  return <div>没有该类型属性</div>;
 }
 
 export default Feature;
