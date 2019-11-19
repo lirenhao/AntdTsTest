@@ -1,7 +1,7 @@
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
 
-import { queryCurrent, query as queryUsers } from '@/services/user';
+import { queryCurrent, query as queryUsers, queryMenu } from '@/services/user';
 
 export interface CurrentUser {
   avatar?: string;
@@ -27,6 +27,7 @@ export interface UserModelType {
   effects: {
     fetch: Effect;
     fetchCurrent: Effect;
+    fetchMenu: Effect;
   };
   reducers: {
     saveCurrentUser: Reducer<UserModelState>;
@@ -55,6 +56,10 @@ const UserModel: UserModelType = {
         type: 'saveCurrentUser',
         payload: response,
       });
+    },
+    *fetchMenu({ callback }, { call }) {
+      const response = yield call(queryMenu);
+      if (callback) callback(response);
     },
   },
 
