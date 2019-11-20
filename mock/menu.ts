@@ -18,7 +18,19 @@ const menuData = [
     icon: 'smile',
     path: '/order',
     locale: 'menu.order',
-  }
+  },
+  {
+    name: 'permit',
+    icon: 'smile',
+    path: '/permit',
+    children: [
+      {
+        name: 'role',
+        icon: 'smile',
+        path: '/permit/role',
+      },
+    ],
+  },
 ]
 
 function getMenus(req: Request, res: Response) {

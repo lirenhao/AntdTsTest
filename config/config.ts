@@ -134,6 +134,18 @@ export default {
               component: './order',
             },
             {
+              name: 'permit',
+              icon: 'smile',
+              routes: [
+                {
+                  name: 'role',
+                  icon: 'smile',
+                  path: '/permit/role',
+                  component: './permit/role',
+                },
+              ],
+            },
+            {
               component: './404',
             },
           ],
