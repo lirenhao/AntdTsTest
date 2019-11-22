@@ -25,18 +25,23 @@ const menuData = [
     path: '/permit',
     children: [
       {
+        name: 'action',
+        icon: 'smile',
+        path: '/permit/action',
+      },
+      {
         name: 'role',
         icon: 'smile',
         path: '/permit/role',
       },
     ],
   },
-]
+];
 
 function getMenus(req: Request, res: Response) {
   return res.json(menuData);
 }
 
 export default {
-  'GET /api/menu': getMenus
-}
+  'GET /api/menu': getMenus,
+};
