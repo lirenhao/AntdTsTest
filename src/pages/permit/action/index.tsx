@@ -28,8 +28,6 @@ const Action: React.FC<ActionProps> = props => {
     props.dispatch({ type: 'action/find' });
   }, []);
 
-  const { form, query, data, loading } = props;
-
   const handleQuery = (e: any) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, value) => {
@@ -117,6 +115,7 @@ const Action: React.FC<ActionProps> = props => {
     },
   ];
 
+  const { form, query, data, loading } = props;
   const { getFieldDecorator } = form;
 
   return (
