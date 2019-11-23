@@ -30,6 +30,11 @@ const menuData = [
         path: '/permit/action',
       },
       {
+        name: 'rest',
+        icon: 'smile',
+        path: '/permit/rest',
+      },
+      {
         name: 'role',
         icon: 'smile',
         path: '/permit/role',

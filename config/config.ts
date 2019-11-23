@@ -144,6 +144,12 @@ export default {
                   component: './permit/action',
                 },
                 {
+                  name: 'rest',
+                  icon: 'smile',
+                  path: '/permit/rest',
+                  component: './permit/rest',
+                },
+                {
                   name: 'role',
                   icon: 'smile',
                   path: '/permit/role',
