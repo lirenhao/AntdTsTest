@@ -138,10 +138,10 @@ export default {
               icon: 'smile',
               routes: [
                 {
-                  name: 'action',
+                  name: 'method',
                   icon: 'smile',
-                  path: '/permit/action',
-                  component: './permit/action',
+                  path: '/permit/method',
+                  component: './permit/method',
                 },
                 {
                   name: 'rest',

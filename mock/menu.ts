@@ -25,9 +25,9 @@ const menuData = [
     path: '/permit',
     children: [
       {
-        name: 'action',
+        name: 'method',
         icon: 'smile',
-        path: '/permit/action',
+        path: '/permit/method',
       },
       {
         name: 'rest',

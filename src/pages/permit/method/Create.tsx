@@ -2,14 +2,14 @@ import React from 'react';
 import { FormComponentProps } from 'antd/es/form';
 import { formatMessage } from 'umi-plugin-react/locale';
 import { Form, Modal, Input } from 'antd';
-import { ActionData } from './data';
+import { MethodData } from './data';
 
 interface CreatePops extends FormComponentProps {
   title: string;
   visible: boolean;
   hideModal(): void;
-  handleFormSubmit(record: ActionData): void;
-  info: Partial<ActionData>;
+  handleFormSubmit(record: MethodData): void;
+  info: Partial<MethodData>;
 }
 
 const Create: React.SFC<CreatePops> = props => {
@@ -45,46 +45,46 @@ const Create: React.SFC<CreatePops> = props => {
       title={title}
       maskClosable={false}
       visible={visible}
-      okText={formatMessage({ id: 'action.form.submit' })}
+      okText={formatMessage({ id: 'method.form.submit' })}
       onOk={handleSubmit}
       onCancel={hideModal}
     >
       <Form>
-        <Form.Item {...formItemLayout} label={formatMessage({ id: 'action.form.id.label' })}>
+        <Form.Item {...formItemLayout} label={formatMessage({ id: 'method.form.id.label' })}>
           {getFieldDecorator('id', {
             initialValue: info.id,
             rules: [
               {
                 required: true,
-                message: formatMessage({ id: 'action.form.id.required' }),
+                message: formatMessage({ id: 'method.form.id.required' }),
               },
             ],
-          })(<Input placeholder={formatMessage({ id: 'action.form.id.placeholder' })} />)}
+          })(<Input placeholder={formatMessage({ id: 'method.form.id.placeholder' })} />)}
         </Form.Item>
-        <Form.Item {...formItemLayout} label={formatMessage({ id: 'action.form.name.label' })}>
+        <Form.Item {...formItemLayout} label={formatMessage({ id: 'method.form.name.label' })}>
           {getFieldDecorator('name', {
             initialValue: info.name,
             rules: [
               {
                 required: true,
-                message: formatMessage({ id: 'action.form.name.required' }),
+                message: formatMessage({ id: 'method.form.name.required' }),
               },
             ],
-          })(<Input placeholder={formatMessage({ id: 'action.form.name.placeholder' })} />)}
+          })(<Input placeholder={formatMessage({ id: 'method.form.name.placeholder' })} />)}
         </Form.Item>
-        <Form.Item {...formItemLayout} label={formatMessage({ id: 'action.form.remark.label' })}>
+        <Form.Item {...formItemLayout} label={formatMessage({ id: 'method.form.remark.label' })}>
           {getFieldDecorator('remark', {
             initialValue: info.remark,
             rules: [
               {
                 required: true,
-                message: formatMessage({ id: 'action.form.remark.required' }),
+                message: formatMessage({ id: 'method.form.remark.required' }),
               },
             ],
           })(
             <Input.TextArea
               style={{ minHeight: 32 }}
-              placeholder={formatMessage({ id: 'action.form.remark.placeholder' })}
+              placeholder={formatMessage({ id: 'method.form.remark.placeholder' })}
               rows={3}
             />,
           )}

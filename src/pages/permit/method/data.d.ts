@@ -4,7 +4,7 @@ export interface Pagination {
   current: number;
 }
 
-export interface ActionData {
+export interface MethodData {
   id: string;
   name: string;
   remark: string;
@@ -15,7 +15,7 @@ export interface QueryData {
   name?: string;
 }
 
-export interface ActionListData {
-  list: ActionData[];
+export interface MethodListData {
+  list: MethodData[];
   pagination: Partial<Pagination>;
 }

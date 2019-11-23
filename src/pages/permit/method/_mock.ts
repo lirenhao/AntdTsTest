@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { ActionData } from './data.d';
+import { MethodData } from './data';
 
-const actions: ActionData[] = [
+const methods: MethodData[] = [
   {
     id: 'ALL',
     name: 'HTTP ALL',
@@ -39,7 +39,7 @@ function find(req: Request, res: Response) {
   if (params.current) {
     current = params.current * 1;
   }
-  const list = actions
+  const list = methods
     .filter(item => !params.id || params.id === '' || params.id === item.id)
     .filter(item => !params.name || params.name === '' || params.name === item.name);
   res.json({
@@ -70,8 +70,8 @@ function remove(req: Request, res: Response) {
 }
 
 export default {
-  'GET /api/action': find,
-  'POST /api/action': create,
-  'PUT /api/action/:id': update,
-  'DELETE /api/action/:id': remove,
+  'GET /api/method': find,
+  'POST /api/method': create,
+  'PUT /api/method/:id': update,
+  'DELETE /api/method/:id': remove,
 };

@@ -1,11 +1,11 @@
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
-import { ActionListData, QueryData } from './data';
+import { MethodListData, QueryData } from './data';
 import { find, save, update, remove } from './service';
 
 export interface ModelState {
   query: QueryData;
-  data: ActionListData;
+  data: MethodListData;
 }
 
 export interface ModelType {
@@ -23,7 +23,7 @@ export interface ModelType {
 }
 
 const Model: ModelType = {
-  namespace: 'action',
+  namespace: 'method',
 
   state: {
     query: {},

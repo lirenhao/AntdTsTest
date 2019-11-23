@@ -6,26 +6,26 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
 import { SorterResult } from 'antd/es/table';
-import { ActionListData, ActionData, Pagination, QueryData } from './data';
+import { MethodListData, MethodData, Pagination, QueryData } from './data';
 import { ModelState } from './model';
 import Create from './Create';
 
 import styles from './style.less';
 
-interface ActionProps extends FormComponentProps {
+interface MethodProps extends FormComponentProps {
   dispatch: Dispatch<any>;
-  data: ActionListData;
+  data: MethodListData;
   query: QueryData;
   loading: boolean;
 }
 
-const Action: React.FC<ActionProps> = props => {
+const Method: React.FC<MethodProps> = props => {
   const [isCreateShow, setIsCreateShow] = React.useState<boolean>(false);
   const [isUpdateShow, setIsUpdateShow] = React.useState<boolean>(false);
-  const [info, setInfo] = React.useState<Partial<ActionData>>({});
+  const [info, setInfo] = React.useState<Partial<MethodData>>({});
 
   React.useEffect(() => {
-    props.dispatch({ type: 'action/find' });
+    props.dispatch({ type: 'method/find' });
   }, []);
 
   const handleQuery = (e: any) => {
@@ -33,7 +33,7 @@ const Action: React.FC<ActionProps> = props => {
     form.validateFieldsAndScroll((err, value) => {
       if (!err) {
         props.dispatch({
-          type: 'action/find',
+          type: 'method/find',
           payload: value,
         });
       }
@@ -42,11 +42,11 @@ const Action: React.FC<ActionProps> = props => {
 
   const handleTable = (
     pagination: Partial<Pagination>,
-    filters: Record<keyof ActionData, string[]>,
-    sorter: SorterResult<ActionData>,
+    filters: Record<keyof MethodData, string[]>,
+    sorter: SorterResult<MethodData>,
   ) => {
     props.dispatch({
-      type: 'action/find',
+      type: 'method/find',
       payload: {
         ...props.query,
         ...pagination,
@@ -54,22 +54,22 @@ const Action: React.FC<ActionProps> = props => {
     });
   };
 
-  const handleCreateForm = (record: ActionData) => {
+  const handleCreateForm = (record: MethodData) => {
     props.dispatch({
-      type: 'action/save',
+      type: 'method/save',
       payload: record,
       callback: () => setIsCreateShow(false),
     });
   };
 
-  const handleUpdate = (record: ActionData) => {
+  const handleUpdate = (record: MethodData) => {
     setInfo(record);
     setIsUpdateShow(true);
   };
 
-  const handleUpdateForm = (record: ActionData) => {
+  const handleUpdateForm = (record: MethodData) => {
     props.dispatch({
-      type: 'action/update',
+      type: 'method/update',
       payload: {
         id: record.id,
         payload: record,
@@ -78,9 +78,9 @@ const Action: React.FC<ActionProps> = props => {
     });
   };
 
-  const handleRemove = (record: ActionData) => {
+  const handleRemove = (record: MethodData) => {
     props.dispatch({
-      type: 'action/remove',
+      type: 'method/remove',
       payload: record.id,
       callback: () => message.success('删除成功'),
     });
@@ -88,27 +88,27 @@ const Action: React.FC<ActionProps> = props => {
 
   const columns = [
     {
-      title: formatMessage({ id: 'action.columns.id' }),
+      title: formatMessage({ id: 'method.columns.id' }),
       dataIndex: 'id',
     },
     {
-      title: formatMessage({ id: 'action.columns.name' }),
+      title: formatMessage({ id: 'method.columns.name' }),
       dataIndex: 'name',
     },
     {
-      title: formatMessage({ id: 'action.columns.remark' }),
+      title: formatMessage({ id: 'method.columns.remark' }),
       dataIndex: 'remark',
     },
     {
-      title: formatMessage({ id: 'action.options' }),
-      render: (_: any, record: ActionData) => (
+      title: formatMessage({ id: 'method.options' }),
+      render: (_: any, record: MethodData) => (
         <React.Fragment>
           <a onClick={() => handleRemove(record)}>
-            <FormattedMessage id="action.options.remove" />
+            <FormattedMessage id="method.options.remove" />
           </a>
           <Divider type="vertical" />
           <a onClick={() => handleUpdate(record)}>
-            <FormattedMessage id="action.options.update" />
+            <FormattedMessage id="method.options.update" />
           </a>
         </React.Fragment>
       ),
@@ -119,33 +119,33 @@ const Action: React.FC<ActionProps> = props => {
   const { getFieldDecorator } = form;
 
   return (
-    <PageHeaderWrapper title={formatMessage({ id: 'action.title' })}>
+    <PageHeaderWrapper title={formatMessage({ id: 'method.title' })}>
       <Card bordered={false}>
         <div className={styles.tableList}>
           <div className={styles.tableListForm}>
             <Form layout="inline" onSubmit={handleQuery}>
               <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                 <Col md={8} sm={24}>
-                  <Form.Item label={formatMessage({ id: 'action.query.id.label' })}>
+                  <Form.Item label={formatMessage({ id: 'method.query.id.label' })}>
                     {getFieldDecorator('id', {
                       initialValue: query.id,
-                    })(<Input placeholder={formatMessage({ id: 'action.query.id.label' })} />)}
+                    })(<Input placeholder={formatMessage({ id: 'method.query.id.label' })} />)}
                   </Form.Item>
                 </Col>
                 <Col md={8} sm={24}>
-                  <Form.Item label={formatMessage({ id: 'action.query.name.label' })}>
+                  <Form.Item label={formatMessage({ id: 'method.query.name.label' })}>
                     {getFieldDecorator('name', {
                       initialValue: query.name,
-                    })(<Input placeholder={formatMessage({ id: 'action.query.name.label' })} />)}
+                    })(<Input placeholder={formatMessage({ id: 'method.query.name.label' })} />)}
                   </Form.Item>
                 </Col>
                 <Col md={8} sm={24}>
                   <span className={styles.submitButtons}>
                     <Button type="primary" htmlType="submit">
-                      <FormattedMessage id="action.button.query" />
+                      <FormattedMessage id="method.button.query" />
                     </Button>
                     <Button style={{ marginLeft: 8 }} onClick={() => form.resetFields()}>
-                      <FormattedMessage id="action.button.reset" />
+                      <FormattedMessage id="method.button.reset" />
                     </Button>
                   </span>
                 </Col>
@@ -154,7 +154,7 @@ const Action: React.FC<ActionProps> = props => {
           </div>
           <div className={styles.tableListOperator}>
             <Button icon="plus" type="primary" onClick={() => setIsCreateShow(true)}>
-              <FormattedMessage id="action.button.create" />
+              <FormattedMessage id="method.button.create" />
             </Button>
           </div>
           <Table
@@ -168,14 +168,14 @@ const Action: React.FC<ActionProps> = props => {
         </div>
       </Card>
       <Create
-        title={formatMessage({ id: 'action.create.title' })}
+        title={formatMessage({ id: 'method.create.title' })}
         visible={isCreateShow}
         hideModal={() => setIsCreateShow(false)}
         handleFormSubmit={handleCreateForm}
         info={{}}
       />
       <Create
-        title={formatMessage({ id: 'action.update.title' })}
+        title={formatMessage({ id: 'method.update.title' })}
         visible={isUpdateShow}
         hideModal={() => setIsUpdateShow(false)}
         handleFormSubmit={handleUpdateForm}
@@ -185,18 +185,18 @@ const Action: React.FC<ActionProps> = props => {
   );
 };
 
-export default Form.create<ActionProps>()(
+export default Form.create<MethodProps>()(
   connect(
     ({
-      action,
+      method,
       loading,
     }: {
-      action: ModelState;
+      method: ModelState;
       loading: { models: { [key: string]: boolean } };
     }) => ({
-      data: action.data,
-      query: action.query,
-      loading: loading.models.action,
+      data: method.data,
+      query: method.query,
+      loading: loading.models.method,
     }),
-  )(Action),
+  )(Method),
 );
