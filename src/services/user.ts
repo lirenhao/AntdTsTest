@@ -13,5 +13,5 @@ export async function queryNotices(): Promise<any> {
 }
 
 export async function queryMenu(): Promise<any> {
-  return request('/api/menu');
+  return request('/api/user/menu');
 }

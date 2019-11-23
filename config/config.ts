@@ -150,6 +150,12 @@ export default {
                   component: './permit/rest',
                 },
                 {
+                  name: 'menu',
+                  icon: 'smile',
+                  path: '/permit/menu',
+                  component: './permit/menu',
+                },
+                {
                   name: 'role',
                   icon: 'smile',
                   path: '/permit/role',

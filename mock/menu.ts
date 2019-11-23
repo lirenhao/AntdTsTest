@@ -35,6 +35,11 @@ const menuData = [
         path: '/permit/rest',
       },
       {
+        name: 'menu',
+        icon: 'smile',
+        path: '/permit/menu',
+      },
+      {
         name: 'role',
         icon: 'smile',
         path: '/permit/role',
@@ -48,5 +53,5 @@ function getMenus(req: Request, res: Response) {
 }
 
 export default {
-  'GET /api/menu': getMenus,
+  'GET /api/user/menu': getMenus,
 };
