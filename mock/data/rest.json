@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "path": "/api/test",
+    "method": "ALL",
+    "remark": "http的所有方法"
+  },
+  {
+    "id": "2",
+    "path": "/api/test",
+    "method": "GET",
+    "remark": "http的get方法"
+  },
+  {
+    "id": "3",
+    "path": "/api/test",
+    "method": "POST",
+    "remark": "http的post方法"
+  },
+  {
+    "id": "4",
+    "path": "/api/test",
+    "method": "PUT",
+    "remark": "http的put方法"
+  },
+  {
+    "id": "5",
+    "path": "/api/test",
+    "method": "DELETE",
+    "remark": "http的delete方法"
+  }
+]

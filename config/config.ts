@@ -31,11 +31,11 @@ const plugins: IPlugin[] = [
       // },
       pwa: pwa
         ? {
-            workboxPluginMode: 'InjectManifest',
-            workboxOptions: {
-              importWorkboxFrom: 'local',
-            },
-          }
+          workboxPluginMode: 'InjectManifest',
+          workboxOptions: {
+            importWorkboxFrom: 'local',
+          },
+        }
         : false, // default close dll, because issue https://github.com/ant-design/ant-design-pro/issues/4665
       // dll features https://webpack.js.org/plugins/dll-plugin/
       // dll: {
@@ -137,6 +137,10 @@ export default {
               name: 'permit',
               icon: 'smile',
               routes: [
+                {
+                  path: '/permit',
+                  redirect: '/permit/role',
+                },
                 {
                   name: 'method',
                   icon: 'smile',

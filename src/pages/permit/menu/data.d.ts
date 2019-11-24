@@ -11,6 +11,7 @@ export interface MenuData {
   path: string;
   locale: string;
   remark: string;
+  children?: MenuData[];
 }
 
 export interface QueryData {
