@@ -37,7 +37,8 @@ const Model: ModelType = {
       });
     },
     *save({ payload, callback }, { call, put }) {
-      const response = yield call(save, payload);
+      yield call(save, payload);
+      const response = yield call(find, payload);
       yield put({
         type: 'setData',
         payload: response,
@@ -46,7 +47,8 @@ const Model: ModelType = {
     },
     *update({ payload, callback }, { call, put }) {
       const { id, payload: params } = payload;
-      const response = yield call(update, id, params);
+      yield call(update, id, params);
+      const response = yield call(find, payload);
       yield put({
         type: 'setData',
         payload: response,
