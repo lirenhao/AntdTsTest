@@ -6,9 +6,11 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
 import { SorterResult } from 'antd/es/table';
-import { RoleListData, RoleData, Pagination, QueryData } from './data';
+import { RoleListData, RoleData, Pagination, QueryData, RoleMenuData, RoleRestData } from './data';
 import { ModelState } from './model';
 import Create from './Create';
+import Menu from './Menu';
+import Rest from './Rest';
 
 import styles from './style.less';
 
@@ -23,6 +25,8 @@ const Role: React.FC<RoleProps> = props => {
 
   const [isCreateShow, setIsCreateShow] = React.useState<boolean>(false);
   const [isUpdateShow, setIsUpdateShow] = React.useState<boolean>(false);
+  const [isMenuShow, setIsMenuShow] = React.useState<boolean>(false);
+  const [isRestShow, setIsRestShow] = React.useState<boolean>(false);
   const [info, setInfo] = React.useState<Partial<RoleData>>({});
 
   React.useEffect(() => {
@@ -84,6 +88,38 @@ const Role: React.FC<RoleProps> = props => {
     });
   };
 
+  const handleMenu = (record: RoleData) => {
+    setInfo(record);
+    setIsMenuShow(true);
+  }
+
+  const handleMenuForm = (record: RoleMenuData) => {
+    props.dispatch({
+      type: 'role/menu',
+      payload: {
+        id: record.id,
+        payload: record,
+      },
+      callback: () => setIsMenuShow(false),
+    });
+  };
+
+  const handleRest = (record: RoleData) => {
+    setInfo(record);
+    setIsRestShow(true);
+  }
+
+  const handleRestForm = (record: RoleRestData) => {
+    props.dispatch({
+      type: 'role/rest',
+      payload: {
+        id: record.id,
+        payload: record,
+      },
+      callback: () => setIsRestShow(false),
+    });
+  };
+
   const columns = [
     {
       title: formatMessage({ id: 'role.columns.id' }),
@@ -107,6 +143,14 @@ const Role: React.FC<RoleProps> = props => {
           <Divider type='vertical' />
           <a onClick={() => handleUpdate(record)}>
             <FormattedMessage id='role.options.update' />
+          </a>
+          <Divider type='vertical' />
+          <a onClick={() => handleMenu(record)}>
+            <FormattedMessage id='role.options.menu' />
+          </a>
+          <Divider type='vertical' />
+          <a onClick={() => handleRest(record)}>
+            <FormattedMessage id='role.options.rest' />
           </a>
         </React.Fragment>
       ),
@@ -181,6 +225,20 @@ const Role: React.FC<RoleProps> = props => {
         visible={isUpdateShow}
         hideModal={() => setIsUpdateShow(false)}
         handleFormSubmit={handleUpdateForm}
+        info={info}
+      />
+      <Menu
+        title={formatMessage({ id: 'role.menu.title' })}
+        visible={isMenuShow}
+        hideModal={() => setIsMenuShow(false)}
+        handleFormSubmit={handleMenuForm}
+        info={info}
+      />
+      <Rest
+        title={formatMessage({ id: 'role.menu.title' })}
+        visible={isRestShow}
+        hideModal={() => setIsRestShow(false)}
+        handleFormSubmit={handleRestForm}
         info={info}
       />
     </PageHeaderWrapper>

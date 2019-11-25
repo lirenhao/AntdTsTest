@@ -5,6 +5,8 @@ export default {
   'role.options': '操作',
   'role.options.remove': '删除',
   'role.options.update': '修改',
+  'role.options.menu': '菜单',
+  'role.options.rest': '资源',
   'role.title': '角色管理',
   'role.query.id.label': '角色',
   'role.query.id.placeholder': '请输入',

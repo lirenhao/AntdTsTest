@@ -2,13 +2,13 @@ import React from 'react';
 import { FormComponentProps } from 'antd/es/form';
 import { formatMessage } from 'umi-plugin-react/locale';
 import { Form, Modal, Input, } from 'antd';
-import { RoleData, RoleMenuData } from './data';
+import { RoleData, RoleRestData } from './data';
 
 interface MenuPops extends FormComponentProps {
   title: string;
   visible: boolean;
   hideModal(): void;
-  handleFormSubmit(record: RoleMenuData): void;
+  handleFormSubmit(record: RoleRestData): void;
   info: Partial<RoleData>;
 }
 

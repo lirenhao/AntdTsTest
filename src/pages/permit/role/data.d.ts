@@ -19,3 +19,13 @@ export interface RoleListData {
   list: RoleData[];
   pagination: Partial<Pagination>;
 }
+
+export interface RoleMenuData {
+  id: string;
+  menus: string[];
+}
+
+export interface RoleRestData {
+  id: string;
+  rests: string[];
+}
