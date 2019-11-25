@@ -16,6 +16,8 @@ export interface ModelType {
     save: Effect;
     update: Effect;
     remove: Effect;
+    getMenu: Effect;
+    getRest: Effect;
   };
   reducers: {
     setData: Reducer<ModelState>;
@@ -70,6 +72,12 @@ const Model: ModelType = {
         payload: response,
       });
       if (callback) callback();
+    },
+    *getMenu({ payloda, callback }, { call, put }) {
+
+    },
+    *getRest({ payloda, callback }, { call, put }) {
+
     },
   },
 

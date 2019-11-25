@@ -25,3 +25,11 @@ export async function remove(id: string) {
     method: 'DELETE',
   });
 }
+
+export async function getMenu() {
+  return request('/api/menu');
+}
+
+export async function getRest() {
+  return request('/api/rest');
+}

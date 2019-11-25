@@ -235,7 +235,7 @@ const Role: React.FC<RoleProps> = props => {
         info={info}
       />
       <Rest
-        title={formatMessage({ id: 'role.menu.title' })}
+        title={formatMessage({ id: 'role.rest.title' })}
         visible={isRestShow}
         hideModal={() => setIsRestShow(false)}
         handleFormSubmit={handleRestForm}

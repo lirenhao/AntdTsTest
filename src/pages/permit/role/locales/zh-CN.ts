@@ -17,6 +17,8 @@ export default {
   'role.button.create': '新建',
   'role.create.title': '新建角色',
   'role.update.title': '编辑角色',
+  'role.menu.title': '角色菜单',
+  'role.rest.title': '角色资源',
   'role.form.submit': '提交',
   'role.form.id.label': '角色',
   'role.form.id.placeholder': '请输入',
