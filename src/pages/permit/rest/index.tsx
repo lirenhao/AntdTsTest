@@ -92,14 +92,6 @@ const Rest: React.FC<RestProps> = props => {
       dataIndex: 'id',
     },
     {
-      title: formatMessage({ id: 'rest.columns.path' }),
-      dataIndex: 'path',
-    },
-    {
-      title: formatMessage({ id: 'rest.columns.method' }),
-      dataIndex: 'method',
-    },
-    {
       title: formatMessage({ id: 'rest.columns.remark' }),
       dataIndex: 'remark',
     },
@@ -130,17 +122,10 @@ const Rest: React.FC<RestProps> = props => {
             <Form layout="inline" onSubmit={handleQuery}>
               <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                 <Col md={8} sm={24}>
-                  <Form.Item label={formatMessage({ id: 'rest.query.method.label' })}>
-                    {getFieldDecorator('method', {
-                      initialValue: query.method,
-                    })(<Input placeholder={formatMessage({ id: 'rest.query.method.label' })} />)}
-                  </Form.Item>
-                </Col>
-                <Col md={8} sm={24}>
-                  <Form.Item label={formatMessage({ id: 'rest.query.path.label' })}>
-                    {getFieldDecorator('path', {
-                      initialValue: query.path,
-                    })(<Input placeholder={formatMessage({ id: 'rest.query.path.label' })} />)}
+                  <Form.Item label={formatMessage({ id: 'rest.query.id.label' })}>
+                    {getFieldDecorator('id', {
+                      initialValue: query.id,
+                    })(<Input placeholder={formatMessage({ id: 'rest.query.id.placeholder' })} />)}
                   </Form.Item>
                 </Col>
                 <Col md={8} sm={24}>

@@ -6,14 +6,11 @@ export interface Pagination {
 
 export interface RestData {
   id: string;
-  path: string;
-  method: string;
   remark: string;
 }
 
 export interface QueryData {
-  path?: string;
-  method?: string;
+  id?: string;
 }
 
 export interface RestListData {

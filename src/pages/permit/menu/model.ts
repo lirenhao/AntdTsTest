@@ -1,11 +1,10 @@
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
-import { MenuListData, QueryData } from './data';
+import { MenuData } from './data';
 import { find, save, update, remove } from './service';
 
 export interface ModelState {
-  query: QueryData;
-  data: MenuListData;
+  data: MenuData[];
 }
 
 export interface ModelType {
@@ -26,15 +25,7 @@ const Model: ModelType = {
   namespace: 'menu',
 
   state: {
-    query: {},
-    data: {
-      list: [],
-      pagination: {
-        total: 0,
-        pageSize: 0,
-        current: 0,
-      },
-    },
+    data: [],
   },
 
   effects: {

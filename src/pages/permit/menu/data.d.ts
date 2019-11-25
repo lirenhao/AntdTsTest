@@ -1,25 +1,10 @@
-export interface Pagination {
-  total: number;
-  pageSize: number;
-  current: number;
-}
-
 export interface MenuData {
   id: string;
+  pId: string;
   name: string;
   icon: string;
   path: string;
   locale: string;
   remark: string;
   children?: MenuData[];
-}
-
-export interface QueryData {
-  id?: string;
-  name?: string;
-}
-
-export interface MenuListData {
-  list: MenuData[];
-  pagination: Partial<Pagination>;
 }

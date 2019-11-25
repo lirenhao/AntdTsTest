@@ -23,5 +23,10 @@
     "id": "DELETE",
     "name": "HTTP DELETE",
     "remark": "http的delete方法"
+  },
+  {
+    "id": "NONE",
+    "name": "HTTP NONE",
+    "remark": "http不能被访问"
   }
 ]

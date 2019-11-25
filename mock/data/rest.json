@@ -1,32 +1,26 @@
 [
   {
-    "id": "1",
-    "path": "/api/test",
-    "method": "ALL",
-    "remark": "http的所有方法"
+    "id": "/",
+    "remark": "root资源"
   },
   {
-    "id": "2",
-    "path": "/api/test",
-    "method": "GET",
-    "remark": "http的get方法"
+    "id": "/api",
+    "remark": "api资源"
   },
   {
-    "id": "3",
-    "path": "/api/test",
-    "method": "POST",
-    "remark": "http的post方法"
+    "id": "/api/method",
+    "remark": "method资源"
   },
   {
-    "id": "4",
-    "path": "/api/test",
-    "method": "PUT",
-    "remark": "http的put方法"
+    "id": "/api/rest",
+    "remark": "rest资源"
   },
   {
-    "id": "5",
-    "path": "/api/test",
-    "method": "DELETE",
-    "remark": "http的delete方法"
+    "id": "/api/menu",
+    "remark": "menu资源"
+  },
+  {
+    "id": "/api/role",
+    "remark": "role资源"
   }
 ]

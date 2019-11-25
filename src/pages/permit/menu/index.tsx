@@ -1,21 +1,18 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Card, Table, Form, Row, Col, Input, Button, Divider, message } from 'antd';
+import { Card, Table, Button, Divider, message } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
-import { SorterResult } from 'antd/es/table';
-import { MenuListData, MenuData, Pagination, QueryData } from './data';
+import { MenuData } from './data';
 import { ModelState } from './model';
 import Create from './Create';
 
 import styles from './style.less';
 
-interface MenuProps extends FormComponentProps {
+interface MenuProps {
   dispatch: Dispatch<any>;
-  data: MenuListData;
-  query: QueryData;
+  data: MenuData[];
   loading: boolean;
 }
 
@@ -27,32 +24,6 @@ const Menu: React.FC<MenuProps> = props => {
   React.useEffect(() => {
     props.dispatch({ type: 'menu/find' });
   }, []);
-
-  const handleQuery = (e: any) => {
-    e.preventDefault();
-    form.validateFieldsAndScroll((err, value) => {
-      if (!err) {
-        props.dispatch({
-          type: 'menu/find',
-          payload: value,
-        });
-      }
-    });
-  };
-
-  const handleTable = (
-    pagination: Partial<Pagination>,
-    filters: Record<keyof MenuData, string[]>,
-    sorter: SorterResult<MenuData>,
-  ) => {
-    props.dispatch({
-      type: 'menu/find',
-      payload: {
-        ...props.query,
-        ...pagination,
-      },
-    });
-  };
 
   const handleCreateForm = (record: MenuData) => {
     props.dispatch({
@@ -127,43 +98,12 @@ const Menu: React.FC<MenuProps> = props => {
     },
   ];
 
-  const { form, query, data, loading } = props;
-  const { getFieldDecorator } = form;
+  const { data, loading } = props;
 
   return (
     <PageHeaderWrapper title={formatMessage({ id: 'menu.title' })}>
       <Card bordered={false}>
         <div className={styles.tableList}>
-          <div className={styles.tableListForm}>
-            <Form layout="inline" onSubmit={handleQuery}>
-              <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
-                <Col md={8} sm={24}>
-                  <Form.Item label={formatMessage({ id: 'menu.query.id.label' })}>
-                    {getFieldDecorator('id', {
-                      initialValue: query.id,
-                    })(<Input placeholder={formatMessage({ id: 'menu.query.id.label' })} />)}
-                  </Form.Item>
-                </Col>
-                <Col md={8} sm={24}>
-                  <Form.Item label={formatMessage({ id: 'menu.query.name.label' })}>
-                    {getFieldDecorator('name', {
-                      initialValue: query.name,
-                    })(<Input placeholder={formatMessage({ id: 'menu.query.name.label' })} />)}
-                  </Form.Item>
-                </Col>
-                <Col md={8} sm={24}>
-                  <span className={styles.submitButtons}>
-                    <Button type="primary" htmlType="submit">
-                      <FormattedMessage id="menu.button.query" />
-                    </Button>
-                    <Button style={{ marginLeft: 8 }} onClick={() => form.resetFields()}>
-                      <FormattedMessage id="menu.button.reset" />
-                    </Button>
-                  </span>
-                </Col>
-              </Row>
-            </Form>
-          </div>
           <div className={styles.tableListOperator}>
             <Button icon="plus" type="primary" onClick={() => setIsCreateShow(true)}>
               <FormattedMessage id="menu.button.create" />
@@ -171,9 +111,8 @@ const Menu: React.FC<MenuProps> = props => {
           </div>
           <Table
             loading={loading}
-            dataSource={data.list}
-            pagination={data.pagination}
-            onChange={handleTable}
+            dataSource={data}
+            pagination={false}
             columns={columns}
             rowKey={record => record.id}
           />
@@ -197,12 +136,9 @@ const Menu: React.FC<MenuProps> = props => {
   );
 };
 
-export default Form.create<MenuProps>()(
-  connect(
-    ({ menu, loading }: { menu: ModelState; loading: { models: { [key: string]: boolean } } }) => ({
-      data: menu.data,
-      query: menu.query,
-      loading: loading.models.menu,
-    }),
-  )(Menu),
-);
+export default connect(
+  ({ menu, loading }: { menu: ModelState; loading: { models: { [key: string]: boolean } } }) => ({
+    data: menu.data,
+    loading: loading.models.menu,
+  }),
+)(Menu);

@@ -61,28 +61,6 @@ const Create: React.SFC<CreatePops> = props => {
             ],
           })(<Input placeholder={formatMessage({ id: 'rest.form.id.placeholder' })} />)}
         </Form.Item>
-        <Form.Item {...formItemLayout} label={formatMessage({ id: 'rest.form.path.label' })}>
-          {getFieldDecorator('path', {
-            initialValue: info.path,
-            rules: [
-              {
-                required: true,
-                message: formatMessage({ id: 'rest.form.path.required' }),
-              },
-            ],
-          })(<Input placeholder={formatMessage({ id: 'rest.form.path.placeholder' })} />)}
-        </Form.Item>
-        <Form.Item {...formItemLayout} label={formatMessage({ id: 'rest.form.method.label' })}>
-          {getFieldDecorator('method', {
-            initialValue: info.method,
-            rules: [
-              {
-                required: true,
-                message: formatMessage({ id: 'rest.form.method.required' }),
-              },
-            ],
-          })(<Input placeholder={formatMessage({ id: 'rest.form.method.placeholder' })} />)}
-        </Form.Item>
         <Form.Item {...formItemLayout} label={formatMessage({ id: 'rest.form.remark.label' })}>
           {getFieldDecorator('remark', {
             initialValue: info.remark,

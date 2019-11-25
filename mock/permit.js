@@ -85,9 +85,29 @@ const basic = key => ({
   [`DELETE /api/${key}/:id`]: remove(key),
 })
 
+export const getMenuTree = (node, list) => {
+  const root = { ...node }
+  const children = list.filter(node => node.pId === root.id)
+  if (children.length > 0) {
+    root.children = []
+    children.forEach(node => root.children.push(getMenuTree(node, list)))
+  }
+  return root
+}
+
+const findMenu = (_, res) => {
+  jsonfile
+    .readFile(paths.menu)
+    .then(dataSource => {
+      res.json(getMenuTree({ id: undefined }, dataSource).children);
+    })
+    .catch(error => res.status(500).send(error));
+}
+
 export default {
   ...basic('method'),
   ...basic('menu'),
+  'GET /api/menu': findMenu,
   ...basic('rest'),
   ...basic('role'),
 };
