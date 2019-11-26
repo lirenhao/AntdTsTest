@@ -29,4 +29,6 @@ export default {
   'role.form.remark.label': '描述',
   'role.form.remark.placeholder': '请输入',
   'role.form.remark.required': '请输入描述',
+  'role.form.menu.label': '菜单',
+  'role.form.rest.label': '资源',
 };

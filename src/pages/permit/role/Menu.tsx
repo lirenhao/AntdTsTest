@@ -1,34 +1,38 @@
 import React from 'react';
 import { connect } from 'dva';
 import { FormComponentProps } from 'antd/es/form';
+import { TreeNodeNormal } from 'antd/lib/tree/Tree';
 import { formatMessage } from 'umi-plugin-react/locale';
 import { Form, Drawer, Input, Button } from 'antd';
+import { Dispatch } from 'redux';
 import { RoleData, RoleMenuData } from './data';
+import { MenuData } from '@/pages/permit/menu/data'
+import MenuTree from './MenuTree';
 
 interface MenuPops extends FormComponentProps {
+  dispatch?: Dispatch<any>;
   loading?: boolean;
   title: string;
   visible: boolean;
   hideModal(): void;
   handleFormSubmit(record: RoleMenuData): void;
-  info: Partial<RoleData>;
+  role: Partial<RoleData>;
+  info: Partial<RoleMenuData>;
 }
 
-const Menu: React.SFC<MenuPops> = props => {
+const Menu: React.FC<MenuPops> = props => {
 
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 7 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 12 },
-      md: { span: 10 },
-    },
-  }
+  const [id] = React.useState(props.info.id);
+  const [menu, setMenu] = React.useState([]);
 
-  const { form, title, visible, hideModal, handleFormSubmit, info, loading } = props;
+  React.useEffect(() => {
+    props.dispatch && props.dispatch({
+      type: 'role/getMenu',
+      callback: setMenu,
+    })
+  }, [id]);
+
+  const { form, title, visible, hideModal, handleFormSubmit, role, info, loading } = props;
   const { getFieldDecorator } = form;
 
   const handleSubmit = (e: any) => {
@@ -41,44 +45,42 @@ const Menu: React.SFC<MenuPops> = props => {
     });
   };
 
+  const loopTree = (node: Partial<MenuData>): TreeNodeNormal => {
+    const root: TreeNodeNormal = { key: node.id || '', title: node.name || '' }
+    if (node.children && node.children.length > 0) {
+      root.children = node.children.map(loopTree);
+    }
+    return root;
+  }
+
+  const treeData = loopTree({ id: 'root', name: 'root', children: menu }).children || [];
+
   return (
     <Drawer
       title={title}
-      width="70%"
+      width="40%"
       destroyOnClose
       maskClosable={false}
       visible={visible}
       onClose={hideModal}
     >
       <Form>
-        <Form.Item {...formItemLayout}
+        <Form.Item
           label={formatMessage({ id: 'role.form.id.label' })}
         >
           {getFieldDecorator('id', {
-            initialValue: info.id,
-            rules: [
-              {
-                required: true,
-                message: formatMessage({ id: 'role.form.id.required' }),
-              },
-            ],
+            initialValue: role.id,
           })(
-            <Input placeholder={formatMessage({ id: 'role.form.id.placeholder' })} />
+            <Input readOnly placeholder={formatMessage({ id: 'role.form.id.placeholder' })} />
           )}
         </Form.Item>
-        <Form.Item {...formItemLayout}
-          label={formatMessage({ id: 'role.form.name.label' })}
+        <Form.Item
+          label={formatMessage({ id: 'role.form.menu.label' })}
         >
-          {getFieldDecorator('name', {
-            initialValue: info.name,
-            rules: [
-              {
-                required: true,
-                message: formatMessage({ id: 'role.form.name.required' }),
-              },
-            ],
+          {getFieldDecorator('menus', {
+            initialValue: info.menus,
           })(
-            <Input placeholder={formatMessage({ id: 'role.form.name.placeholder' })} />
+            <MenuTree treeData={treeData} />
           )}
         </Form.Item>
       </Form>

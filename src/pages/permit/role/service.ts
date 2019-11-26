@@ -33,3 +33,7 @@ export async function getMenu() {
 export async function getRest() {
   return request('/api/rest');
 }
+
+export async function getMethod() {
+  return request('/api/method');
+}

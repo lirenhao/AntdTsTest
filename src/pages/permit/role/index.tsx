@@ -89,17 +89,20 @@ const Role: React.FC<RoleProps> = props => {
   };
 
   const handleMenu = (record: RoleData) => {
-    setInfo(record);
-    setIsMenuShow(true);
+    props.dispatch({
+      type: 'role/getMenu',
+      payload: record.id,
+      callback: () => {
+        setInfo(record);
+        setIsMenuShow(true);
+      },
+    });
   }
 
   const handleMenuForm = (record: RoleMenuData) => {
     props.dispatch({
-      type: 'role/menu',
-      payload: {
-        id: record.id,
-        payload: record,
-      },
+      type: 'role/saveRoleMenu',
+      payload: record,
       callback: () => setIsMenuShow(false),
     });
   };
@@ -232,14 +235,16 @@ const Role: React.FC<RoleProps> = props => {
         visible={isMenuShow}
         hideModal={() => setIsMenuShow(false)}
         handleFormSubmit={handleMenuForm}
-        info={info}
+        role={info}
+        info={{ id: info.id, menus: ['role'] }}
       />
       <Rest
         title={formatMessage({ id: 'role.rest.title' })}
         visible={isRestShow}
         hideModal={() => setIsRestShow(false)}
         handleFormSubmit={handleRestForm}
-        info={info}
+        role={info}
+        info={{ id: info.id, rests: [] }}
       />
     </PageHeaderWrapper>
   );

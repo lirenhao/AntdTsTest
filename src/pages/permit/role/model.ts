@@ -1,7 +1,7 @@
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
 import { RoleListData, QueryData } from './data';
-import { find, save, update, remove } from './service';
+import { find, save, update, remove, getMenu, getRest, getMethod } from './service';
 
 export interface ModelState {
   query: QueryData;
@@ -17,7 +17,11 @@ export interface ModelType {
     update: Effect;
     remove: Effect;
     getMenu: Effect;
+    getRoleMenu: Effect;
+    saveRoleMenu: Effect;
     getRest: Effect;
+    getRoleRest: Effect;
+    saveRoleRest: Effect;
   };
   reducers: {
     setData: Reducer<ModelState>;
@@ -73,10 +77,25 @@ const Model: ModelType = {
       });
       if (callback) callback();
     },
-    *getMenu({ payloda, callback }, { call, put }) {
+    *getMenu({ payload, callback }, { call, put }) {
+      const menu = yield call(getMenu);
+      if (callback) callback(menu);
+    },
+    *getRoleMenu() {
 
     },
-    *getRest({ payloda, callback }, { call, put }) {
+    *saveRoleMenu() {
+
+    },
+    *getRest({ payload, callback }, { call, put }) {
+      const rest = yield call(getRest);
+      const method = yield call(getMethod);
+      if (callback) callback(rest.list, method.list);
+    },
+    *getRoleRest() {
+
+    },
+    *saveRoleRest() {
 
     },
   },

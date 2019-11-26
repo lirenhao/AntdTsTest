@@ -3,32 +3,40 @@ import { connect } from 'dva';
 import { FormComponentProps } from 'antd/es/form';
 import { formatMessage } from 'umi-plugin-react/locale';
 import { Form, Drawer, Input, Button } from 'antd';
+import { Dispatch } from 'redux';
 import { RoleData, RoleRestData } from './data';
+import { RestData } from '../rest/data';
+import { MethodData } from '../method/data';
+import RestList from './RestList';
 
-interface RestPops extends FormComponentProps {
+interface MenuPops extends FormComponentProps {
+  dispatch?: Dispatch<any>;
   loading?: boolean;
   title: string;
   visible: boolean;
   hideModal(): void;
   handleFormSubmit(record: RoleRestData): void;
-  info: Partial<RoleData>;
+  role: Partial<RoleData>;
+  info: Partial<RoleRestData>;
 }
 
-const Rest: React.SFC<RestPops> = props => {
+const Menu: React.FC<MenuPops> = props => {
 
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 7 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 12 },
-      md: { span: 10 },
-    },
-  }
+  const [id] = React.useState(props.info.id);
+  const [rest, setRest] = React.useState<RestData[]>([]);
+  const [method, setMethod] = React.useState<MethodData[]>([]);
 
-  const { form, title, visible, hideModal, handleFormSubmit, info, loading } = props;
+  React.useEffect(() => {
+    props.dispatch && props.dispatch({
+      type: 'role/getRest',
+      callback: (rest: RestData[], method: MethodData[]) => {
+        setRest(rest)
+        setMethod(method)
+      },
+    })
+  }, [id]);
+
+  const { form, title, visible, hideModal, handleFormSubmit, role, info, loading } = props;
   const { getFieldDecorator } = form;
 
   const handleSubmit = (e: any) => {
@@ -44,41 +52,29 @@ const Rest: React.SFC<RestPops> = props => {
   return (
     <Drawer
       title={title}
-      width="70%"
+      width="40%"
       destroyOnClose
       maskClosable={false}
       visible={visible}
       onClose={hideModal}
     >
       <Form>
-        <Form.Item {...formItemLayout}
+        <Form.Item
           label={formatMessage({ id: 'role.form.id.label' })}
         >
           {getFieldDecorator('id', {
-            initialValue: info.id,
-            rules: [
-              {
-                required: true,
-                message: formatMessage({ id: 'role.form.id.required' }),
-              },
-            ],
+            initialValue: role.id,
           })(
-            <Input placeholder={formatMessage({ id: 'role.form.id.placeholder' })} />
+            <Input readOnly placeholder={formatMessage({ id: 'role.form.id.placeholder' })} />
           )}
         </Form.Item>
-        <Form.Item {...formItemLayout}
-          label={formatMessage({ id: 'role.form.name.label' })}
+        <Form.Item
+          label={formatMessage({ id: 'role.form.rest.label' })}
         >
-          {getFieldDecorator('name', {
-            initialValue: info.name,
-            rules: [
-              {
-                required: true,
-                message: formatMessage({ id: 'role.form.name.required' }),
-              },
-            ],
+          {getFieldDecorator('rests', {
+            initialValue: info.rests,
           })(
-            <Input placeholder={formatMessage({ id: 'role.form.name.placeholder' })} />
+            <RestList listData={rest.map(item => item.id)} checkData={method.map(item => item.id)} />
           )}
         </Form.Item>
       </Form>
@@ -106,10 +102,10 @@ const Rest: React.SFC<RestPops> = props => {
   );
 }
 
-export default Form.create<RestPops>()(
+export default Form.create<MenuPops>()(
   connect(({ loading }: {
     loading: { effects: { [key: string]: boolean } };
   }) => ({
     loading: loading.effects['role/saveRest'],
-  }))(Rest)
+  }))(Menu)
 );

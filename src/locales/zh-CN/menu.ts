@@ -50,4 +50,9 @@ export default {
   'menu.editor.koni': '拓扑编辑器',
   'menu.product': '产品',
   'menu.order': '订单',
+  'menu.permit': '权限',
+  'menu.permit.method': '方法',
+  'menu.permit.rest': '资源',
+  'menu.permit.menu': '菜单',
+  'menu.permit.role': '角色',
 };
