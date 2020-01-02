@@ -1,11 +1,13 @@
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
-import { RestListData, QueryData } from './data';
-import { find, save, update, remove } from './service';
+import { RestListData, QueryData } from './data.d';
+import { MethodData } from '../method/data.d';
+import { find, save, update, remove, getMethod } from './service';
 
 export interface ModelState {
   query: QueryData;
   data: RestListData;
+  methods: MethodData[];
 }
 
 export interface ModelType {
@@ -16,9 +18,11 @@ export interface ModelType {
     save: Effect;
     update: Effect;
     remove: Effect;
+    findMethod: Effect;
   };
   reducers: {
     setData: Reducer<ModelState>;
+    setMethod: Reducer<ModelState>;
   };
 }
 
@@ -35,6 +39,7 @@ const Model: ModelType = {
         current: 0,
       },
     },
+    methods: [],
   },
 
   effects: {
@@ -71,6 +76,13 @@ const Model: ModelType = {
       });
       if (callback) callback();
     },
+    *findMethod(_, { call, put }) {
+      const response = yield call(getMethod);
+      yield put({
+        type: 'setMethod',
+        payload: response.list,
+      });
+    },
   },
 
   reducers: {
@@ -78,6 +90,12 @@ const Model: ModelType = {
       return {
         ...(state as ModelState),
         data: action.payload,
+      };
+    },
+    setMethod(state, action) {
+      return {
+        ...(state as ModelState),
+        methods: action.payload,
       };
     },
   },

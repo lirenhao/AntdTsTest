@@ -1,26 +1,38 @@
 [
   {
-    "id": "/",
+    "id": "ALL /",
+    "path": "/",
+    "method": "ALL",
     "remark": "root资源"
   },
   {
-    "id": "/api",
+    "id": "ALL /api",
+    "path": "/api",
+    "method": "ALL",
     "remark": "api资源"
   },
   {
-    "id": "/api/method",
+    "id": "ALL /api/method",
+    "path": "/api/method",
+    "method": "ALL",
     "remark": "method资源"
   },
   {
-    "id": "/api/rest",
+    "id": "ALL /api/rest",
+    "path": "/api/rest",
+    "method": "ALL",
     "remark": "rest资源"
   },
   {
-    "id": "/api/menu",
+    "id": "ALL /api/menu",
+    "path": "/api/menu",
+    "method": "ALL",
     "remark": "menu资源"
   },
   {
-    "id": "/api/role",
+    "id": "ALL /api/role",
+    "path": "/api/role",
+    "method": "ALL",
     "remark": "role资源"
   }
 ]

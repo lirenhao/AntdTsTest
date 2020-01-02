@@ -1,8 +1,9 @@
 import React from 'react';
 import { FormComponentProps } from 'antd/es/form';
 import { formatMessage } from 'umi-plugin-react/locale';
-import { Form, Modal, Input } from 'antd';
-import { RestData } from './data';
+import { Form, Modal, Input, Select } from 'antd';
+import { RestData } from './data.d';
+import { MethodData } from '../method/data.d'
 
 interface CreatePops extends FormComponentProps {
   title: string;
@@ -10,6 +11,7 @@ interface CreatePops extends FormComponentProps {
   hideModal(): void;
   handleFormSubmit(record: RestData): void;
   info: Partial<RestData>;
+  methods: MethodData[];
 }
 
 const Create: React.SFC<CreatePops> = props => {
@@ -25,7 +27,7 @@ const Create: React.SFC<CreatePops> = props => {
     },
   };
 
-  const { form, title, visible, hideModal, handleFormSubmit, info } = props;
+  const { form, title, visible, hideModal, handleFormSubmit, info, methods } = props;
   const { getFieldDecorator } = form;
 
   const handleSubmit = (e: any) => {
@@ -59,7 +61,33 @@ const Create: React.SFC<CreatePops> = props => {
                 message: formatMessage({ id: 'rest.form.id.required' }),
               },
             ],
-          })(<Input placeholder={formatMessage({ id: 'rest.form.id.placeholder' })} />)}
+          })(<Input placeholder={formatMessage({ id: 'rest.form.id.placeholder' })} readOnly />)}
+        </Form.Item>
+        <Form.Item {...formItemLayout} label={formatMessage({ id: 'rest.form.path.label' })}>
+          {getFieldDecorator('path', {
+            initialValue: info.path,
+            rules: [
+              {
+                required: true,
+                message: formatMessage({ id: 'rest.form.path.required' }),
+              },
+            ],
+          })(<Input placeholder={formatMessage({ id: 'rest.form.path.placeholder' })} />)}
+        </Form.Item>
+        <Form.Item {...formItemLayout} label={formatMessage({ id: 'rest.form.method.label' })}>
+          {getFieldDecorator('method', {
+            initialValue: info.method,
+            rules: [
+              {
+                required: true,
+                message: formatMessage({ id: 'rest.form.method.required' }),
+              },
+            ],
+          })(<Select placeholder={formatMessage({ id: 'rest.form.method.placeholder' })}>
+            {methods.map(item => (
+              <Select.Option key={item.id} value={item.id}>{item.id}</Select.Option>
+            ))}
+          </Select>)}
         </Form.Item>
         <Form.Item {...formItemLayout} label={formatMessage({ id: 'rest.form.remark.label' })}>
           {getFieldDecorator('remark', {
@@ -70,13 +98,11 @@ const Create: React.SFC<CreatePops> = props => {
                 message: formatMessage({ id: 'rest.form.remark.required' }),
               },
             ],
-          })(
-            <Input.TextArea
-              style={{ minHeight: 32 }}
-              placeholder={formatMessage({ id: 'rest.form.remark.placeholder' })}
-              rows={3}
-            />,
-          )}
+          })(<Input.TextArea
+            style={{ minHeight: 32 }}
+            placeholder={formatMessage({ id: 'rest.form.remark.placeholder' })}
+            rows={3}
+          />)}
         </Form.Item>
       </Form>
     </Modal>

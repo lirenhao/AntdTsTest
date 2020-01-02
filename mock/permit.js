@@ -55,8 +55,8 @@ const update = key => (req, res, u, b) => {
     .then(dataSource => {
       jsonfile.writeFileSync(
         paths[key],
-        dataSource.map(item => (item.id === body.id ? { ...item, ...body } : item)),
-        { spaces: 2 }
+        dataSource.map(item => (item.id === id ? { ...item, ...body } : item)),
+        { spaces: 2 },
       );
       find(key)(req, res);
     })
@@ -71,7 +71,7 @@ const remove = key => (req, res) => {
       jsonfile.writeFileSync(
         paths[key],
         dataSource.filter(item => item.id !== id),
-        { spaces: 2 }
+        { spaces: 2 },
       );
       res.end();
     })
@@ -87,10 +87,10 @@ const basic = key => ({
 
 export const getMenuTree = (node, list) => {
   const root = { ...node }
-  const children = list.filter(node => node.pId === root.id)
+  const children = list.filter(item => item.pId === root.id)
   if (children.length > 0) {
     root.children = []
-    children.forEach(node => root.children.push(getMenuTree(node, list)))
+    children.forEach(item => root.children.push(getMenuTree(item, list)))
   }
   return root
 }

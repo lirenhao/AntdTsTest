@@ -5,8 +5,8 @@ import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
-import { SorterResult } from 'antd/es/table';
-import { RestListData, RestData, Pagination, QueryData } from './data';
+import { RestListData, RestData, Pagination, QueryData } from './data.d';
+import { MethodData } from '../method/data.d';
 import { ModelState } from './model';
 import Create from './Create';
 
@@ -16,6 +16,7 @@ interface RestProps extends FormComponentProps {
   dispatch: Dispatch<any>;
   data: RestListData;
   query: QueryData;
+  methods: MethodData[];
   loading: boolean;
 }
 
@@ -26,11 +27,12 @@ const Rest: React.FC<RestProps> = props => {
 
   React.useEffect(() => {
     props.dispatch({ type: 'rest/find' });
+    props.dispatch({ type: 'rest/findMethod' });
   }, []);
 
   const handleQuery = (e: any) => {
     e.preventDefault();
-    form.validateFieldsAndScroll((err, value) => {
+    props.form.validateFieldsAndScroll((err, value) => {
       if (!err) {
         props.dispatch({
           type: 'rest/find',
@@ -42,8 +44,6 @@ const Rest: React.FC<RestProps> = props => {
 
   const handleTable = (
     pagination: Partial<Pagination>,
-    filters: Record<keyof RestData, string[]>,
-    sorter: SorterResult<RestData>,
   ) => {
     props.dispatch({
       type: 'rest/find',
@@ -92,6 +92,14 @@ const Rest: React.FC<RestProps> = props => {
       dataIndex: 'id',
     },
     {
+      title: formatMessage({ id: 'rest.columns.path' }),
+      dataIndex: 'path',
+    },
+    {
+      title: formatMessage({ id: 'rest.columns.method' }),
+      dataIndex: 'method',
+    },
+    {
       title: formatMessage({ id: 'rest.columns.remark' }),
       dataIndex: 'remark',
     },
@@ -111,7 +119,7 @@ const Rest: React.FC<RestProps> = props => {
     },
   ];
 
-  const { form, query, data, loading } = props;
+  const { form, query, data, methods, loading } = props;
   const { getFieldDecorator } = form;
 
   return (
@@ -162,6 +170,7 @@ const Rest: React.FC<RestProps> = props => {
         hideModal={() => setIsCreateShow(false)}
         handleFormSubmit={handleCreateForm}
         info={{}}
+        methods={methods}
       />
       <Create
         title={formatMessage({ id: 'rest.update.title' })}
@@ -169,6 +178,7 @@ const Rest: React.FC<RestProps> = props => {
         hideModal={() => setIsUpdateShow(false)}
         handleFormSubmit={handleUpdateForm}
         info={info}
+        methods={methods}
       />
     </PageHeaderWrapper>
   );
@@ -185,6 +195,7 @@ export default Form.create<RestProps>()(
     }) => ({
       data: rest.data,
       query: rest.query,
+      methods: rest.methods,
       loading: loading.models.rest,
     }),
   )(Rest),
