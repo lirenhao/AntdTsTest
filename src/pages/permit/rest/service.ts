@@ -14,14 +14,14 @@ export async function save(rest: RestData) {
 }
 
 export async function update(id: string, rest: RestData) {
-  return request(`/api/rest/${id}`, {
+  return request(`/api/rest/${encodeURIComponent(id)}`, {
     method: 'PUT',
     data: rest,
   });
 }
 
 export async function remove(id: string) {
-  return request(`/api/rest/${id}`, {
+  return request(`/api/rest/${encodeURIComponent(id)}`, {
     method: 'DELETE',
   });
 }

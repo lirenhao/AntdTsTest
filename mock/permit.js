@@ -108,6 +108,5 @@ export default {
   ...basic('method'),
   ...basic('menu'),
   'GET /api/menu': findMenu,
-  ...basic('rest'),
   ...basic('role'),
 };

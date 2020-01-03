@@ -12,7 +12,8 @@ export interface RestData {
 }
 
 export interface QueryData {
-  id?: string;
+  path?: string;
+  method?: string;
 }
 
 export interface RestListData {

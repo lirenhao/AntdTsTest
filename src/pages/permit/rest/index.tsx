@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Card, Table, Form, Row, Col, Input, Button, Divider, message } from 'antd';
+import { Card, Table, Form, Row, Col, Input, Select, Button, Divider, message } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Dispatch } from 'redux';
@@ -67,11 +67,11 @@ const Rest: React.FC<RestProps> = props => {
     setIsUpdateShow(true);
   };
 
-  const handleUpdateForm = (record: RestData) => {
+  const handleUpdateForm = (record: RestData, id: string) => {
     props.dispatch({
       type: 'rest/update',
       payload: {
-        id: record.id,
+        id,
         payload: record,
       },
       callback: () => setIsUpdateShow(false),
@@ -130,10 +130,21 @@ const Rest: React.FC<RestProps> = props => {
             <Form layout="inline" onSubmit={handleQuery}>
               <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                 <Col md={8} sm={24}>
-                  <Form.Item label={formatMessage({ id: 'rest.query.id.label' })}>
-                    {getFieldDecorator('id', {
-                      initialValue: query.id,
-                    })(<Input placeholder={formatMessage({ id: 'rest.query.id.placeholder' })} />)}
+                  <Form.Item label={formatMessage({ id: 'rest.query.path.label' })}>
+                    {getFieldDecorator('path', {
+                      initialValue: query.path,
+                    })(<Input placeholder={formatMessage({ id: 'rest.query.path.placeholder' })} />)}
+                  </Form.Item>
+                </Col>
+                <Col md={8} sm={24}>
+                  <Form.Item label={formatMessage({ id: 'rest.query.method.label' })}>
+                    {getFieldDecorator('method', {
+                      initialValue: query.method,
+                    })(<Select placeholder={formatMessage({ id: 'rest.query.method.placeholder' })}>
+                      {methods.map(item => (
+                        <Select.Option key={item.id} value={item.id}>{item.id}</Select.Option>
+                      ))}
+                    </Select>)}
                   </Form.Item>
                 </Col>
                 <Col md={8} sm={24}>

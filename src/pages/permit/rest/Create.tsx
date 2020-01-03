@@ -9,7 +9,7 @@ interface CreatePops extends FormComponentProps {
   title: string;
   visible: boolean;
   hideModal(): void;
-  handleFormSubmit(record: RestData): void;
+  handleFormSubmit(record: RestData, id?: string): void;
   info: Partial<RestData>;
   methods: MethodData[];
 }
@@ -34,7 +34,7 @@ const Create: React.SFC<CreatePops> = props => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, value) => {
       if (!err) {
-        handleFormSubmit({ ...info, ...value });
+        handleFormSubmit({ ...info, ...value, id: `${value.method} ${value.path}` }, info.id);
         form.resetFields();
       }
     });
@@ -52,17 +52,6 @@ const Create: React.SFC<CreatePops> = props => {
       onCancel={hideModal}
     >
       <Form>
-        <Form.Item {...formItemLayout} label={formatMessage({ id: 'rest.form.id.label' })}>
-          {getFieldDecorator('id', {
-            initialValue: info.id,
-            rules: [
-              {
-                required: true,
-                message: formatMessage({ id: 'rest.form.id.required' }),
-              },
-            ],
-          })(<Input placeholder={formatMessage({ id: 'rest.form.id.placeholder' })} readOnly />)}
-        </Form.Item>
         <Form.Item {...formItemLayout} label={formatMessage({ id: 'rest.form.path.label' })}>
           {getFieldDecorator('path', {
             initialValue: info.path,
@@ -70,6 +59,16 @@ const Create: React.SFC<CreatePops> = props => {
               {
                 required: true,
                 message: formatMessage({ id: 'rest.form.path.required' }),
+              },
+              {
+                pattern: /^\/.*/,
+                message: formatMessage({ id: 'rest.form.path.required' }),
+              },
+              {
+                validator: (rule: any, value: any, callback: any) => {
+                  // TODO 后台校验资源是否重复
+                  callback()
+                },
               },
             ],
           })(<Input placeholder={formatMessage({ id: 'rest.form.path.placeholder' })} />)}
